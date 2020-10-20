@@ -1,8 +1,24 @@
+.page {
+    display: block;
+    height: 100%;
+    background-color: #e6e6ff;
+}
+
 .cabecalho{
-    height: 20%;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
     width: 100%;
     background-color: #b3b3ff;
     text-align: center;
+}
+
+.geral{
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    justify-content: center;
+    background-color: #e6e6ff;
 }
 
 .titulo{
@@ -18,20 +34,13 @@
     padding-bottom: 30px;
 }
 
-.geral{
-    height: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e6e6ff;
-}
-
 .inputs{
     display: flex;
     flex-direction: column;
     margin-left: 16px;
     margin-right: 16px;
     border: 1px solid black;
+    border-radius: 6px;
     padding: 30px;
     background-color: white;
 }
@@ -39,6 +48,8 @@
 .rodape{
     height: 10%;
     width: 100%;
+    position: absolute;
+    bottom: 0;
     background-color: #e6e6ff;
     text-align: center;
 }

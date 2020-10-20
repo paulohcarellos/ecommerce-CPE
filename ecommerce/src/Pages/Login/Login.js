@@ -18,7 +18,7 @@ function Login() {
     }
 
     return(
-        <pagina>
+        <pagina className="page">
             <div className="cabecalho">
                 <div className="titulo">
                     <p>Bem-vindo(a) ao e-commerce que mais satisfaz clientes!</p>
