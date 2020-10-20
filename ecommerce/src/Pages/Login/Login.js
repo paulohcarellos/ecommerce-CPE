@@ -6,14 +6,13 @@ function Login() {
     return(
         <pagina>
             <div className="cabecalho">
-                <div className="logo">
-                    <img src="/imagens/BHTP.png" alt="logo"></img>
+                <div className="titulo">
+                    <p>Bem-vindo(a) ao e-commerce que mais satisfaz clientes!</p>
                 </div>
             </div>
             <div className="geral">
                 <div className="container">
-                    <h1><b>ENTRAR</b></h1>
-                    <h3>E-commerce</h3>
+                    <h1><b>Entrar</b></h1>
                     <Form className="inputs">
                         <Form.Group controlId="email">
                             <Form.Control type="email" placeholder="Email"/>
@@ -21,10 +20,13 @@ function Login() {
                         <Form.Group controlId="senha">
                             <Form.Control type="password" placeholder="Senha"/>
                         </Form.Group>
-                        <Button variant="info">Login</Button>{' '}
-                        <Button variant="secondary">Criar conta</Button>{' '}
+                        <Button variant="light">Login</Button>{' '}
+                        <Button variant="light">Criar conta</Button>{' '}
                     </Form>
                 </div>
+            </div>
+            <div className="rodape">
+                <p>Desenvolvido por CPEJr.</p>
             </div>
         </pagina>
     );
