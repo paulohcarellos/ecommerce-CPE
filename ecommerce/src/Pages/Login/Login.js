@@ -34,7 +34,7 @@ function Login() {
                             <Form.Group controlId="senha">
                                 <Form.Control type="password" placeholder="Senha" onChange={(e)=>{setPassword(e.target.value)}}/>
                             </Form.Group>
-                            <Button variant="outline-dark" onClick={login}>Login</Button>
+                            <Button variant="outline-dark" onClick={login}>Login</Button><hr></hr>
                             <Button variant="outline-dark" onClick={()=>history.push("cadastro")}>Criar conta</Button>
                         </Form>
                 </div>
