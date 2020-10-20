@@ -1,13 +1,14 @@
 .page {
     display: block;
-    height: 100%;
+    position: relative;
+    min-height: 100vh;
     background-color: #e6e6ff;
 }
 
-.cabecalho{
+.cabecalho {
     display: flex;
     flex-direction: column;
-    height: 120px;
+    height: 3cm;
     width: 100%;
     background-color: #b3b3ff;
     text-align: center;
@@ -19,6 +20,7 @@
     margin-top: 5%;
     justify-content: center;
     background-color: #e6e6ff;
+    padding-bottom: 10%;
 }
 
 .titulo{
@@ -37,6 +39,7 @@
 .inputs{
     display: flex;
     flex-direction: column;
+    flex: 1 4 auto;
     margin-left: 16px;
     margin-right: 16px;
     border: 1px solid black;
