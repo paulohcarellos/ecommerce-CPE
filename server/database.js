@@ -1,8 +1,12 @@
 const express = require('express')
+const sqlite3 = require('sqlite3');
+const cors = require('cors');
+
 const app = express()
 const port = 3030
 
-const sqlite3 = require('sqlite3').verbose();
+app.use(cors());
+app.use(express.json());
 
 let database = new sqlite3.Database('db.sqlite3', (error) => {
     if (error) {
@@ -11,17 +15,32 @@ let database = new sqlite3.Database('db.sqlite3', (error) => {
     console.log('Connected');
 });
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
     res.send('Experimenting')
+})
+
+app.post('/register', (req, res) => {
+    values = Object.values(req.body);
+    registerUser(values);
+    res.send('Received!');
 })
   
 app.listen(port, () => {
- console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`)
 })
 
+function registerUser(values) {
 
+    database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+            if (error) {
+                return console.log(error);
+            }
+            return console.log(`User registered: ${this.lastID}`);
+    });
+}
 
-function insert(database, table, values) {
+/* function insert(database, table, values) {
 
     let placeholders = "";
 
@@ -59,4 +78,4 @@ function select(database, tables, fields, conditions) {
         }
         return console.log(rows);
     });
-}
+} */

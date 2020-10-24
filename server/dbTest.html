@@ -2,9 +2,25 @@
 <html lang="en">
     <head>
         <title>DB Testing</title>
-        <script src="database.js"></script>
     </head>
     <body>
         <h1>Hello World</h1>
+        <form>
+            <input type="text" name="someText">
+            <input type="submit" value="Submit">
+        </form>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                    fetch('http://localhost:3030/register', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            name: "Jefferson",
+                            last: "Rodrigues",
+                        })
+                    });
+            });
+        </script>
     </body>
 </html>
