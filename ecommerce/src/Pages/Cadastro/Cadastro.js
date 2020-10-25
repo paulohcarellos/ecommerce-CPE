@@ -18,20 +18,20 @@ function Cadastro() {
 
     function register() {
         fetch('http://localhost:3030/register', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            first_name: primeiroNome,
-            last_name: ultimoNome, 
-            email: email, 
-            password: senha, 
-            state: estado, 
-            city: cidade, 
-            adress: endereco, 
-            phone: celular, 
-            cpf: cpf, 
-            birthdate: dataNascimento, 
-            created_at: 'TODO'
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                first_name: primeiroNome,
+                last_name: ultimoNome, 
+                email: email, 
+                password: senha, 
+                state: estado, 
+                city: cidade, 
+                adress: endereco, 
+                phone: celular, 
+                cpf: cpf, 
+                birthdate: dataNascimento, 
+                created_at: 'TODO'
         })
         }).catch((error) =>
             console.log(error)
