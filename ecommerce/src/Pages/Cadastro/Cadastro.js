@@ -33,9 +33,9 @@ function Cadastro() {
             birthdate: dataNascimento, 
             created_at: 'TODO'
         })
-    }).catch((error) =>
-        console.log(error)
-    );
+        }).catch((error) =>
+            console.log(error)
+        );
     }
 
     return(
