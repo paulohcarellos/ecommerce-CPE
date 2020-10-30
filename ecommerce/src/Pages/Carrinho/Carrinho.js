@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
-import "./Home.css"
+import {useHistory} from 'react-router-dom';
+import "./Carrinho.css"
 import { Link } from 'react-router-dom';
 
-function Home() {
+function Carrinho() {
+    const history = useHistory();
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
-          href="/home"
+          href="/carrinho"
           ref={ref}
           onClick={(e) => {
             e.preventDefault();
@@ -51,8 +53,9 @@ function Home() {
       );
 
     return(
-            <div id="cabecalhoHome">
-                <Navbar id="navbar" fixed="top" expand="lg">
+        <div id="paginaCarrinho">
+            <div id="cabecalhoCarrinho">
+                <Navbar id="navbar" expand="lg">
                     <Navbar.Brand href="/home">LOGO</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -98,11 +101,64 @@ function Home() {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-    
             </div>
+            <div id="bodyCarrinho">
+                <Nav id="nav3">
+                    <Nav id="Inicio">
+                        <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
+                    </Nav>
+                </Nav>
+                <div id="linha"/>
+                <div id="Produto">
+                    <div id="Produto1">
+                        <img src="/imagens/Tenis.png" alt="Tenis" id="Tenis"/>
+                        <Nav id="Botão">
+                            <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
+                        </Nav>
+                        <Nav id="Nome">
+                            Tênis Adidas
+                        </Nav>
+                        <Nav id="Preco">
+                            R$ 199,99
+                        </Nav>
+                        <Nav id="Estoque">
+                            Estoque - 3
+                        </Nav>
+                        <Nav id="Compras">
+                            Compras - 172
+                        </Nav>
+                    </div>
+                </div>
+                <div id="linha"/>
+                <div id="Produto">
+                    <div id="Produto2">
+                        <img src="/imagens/Bolsa.jpeg" alt="Bolsa" id="Tenis"/>
+                        <Nav id="Botão">
+                            <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
+                        </Nav>
+                        <Nav id="Nome">
+                            Bolsa Marrom
+                        </Nav>
+                        <Nav id="Preco">
+                            R$ 79,99
+                        </Nav>
+                        <Nav id="Estoque">
+                            Estoque - 2
+                        </Nav>
+                        <Nav id="Compras">
+                            Compras - 72
+                        </Nav>
+                    </div>
+                    <div id="linha"/>
+                    <Nav id="Comprar">
+                        <Button variant="outline-primary" size="lg" onClick={()=>history.push("home")}>Finalizar Pedido</Button>
+                    </Nav>
+                </div>
+            </div>
+        </div>
         
     );
-
+        
 }
 
-export default Home;
+export default Carrinho;
