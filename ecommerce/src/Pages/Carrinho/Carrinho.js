@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom';
 
 function Carrinho() {
     const history = useHistory();
+    function Compra(){
+        alert("Pedido realizado com sucesso")
+        history.push("home")
+    }
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
           href="/carrinho"
@@ -108,12 +112,12 @@ function Carrinho() {
                         <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                     </Nav>
                 </Nav>
-                <div id="linha"/>
+                <div id="linha1"/>
                 <div id="Produto">
                     <div id="Produto1">
                         <img src="/imagens/Tenis.png" alt="Tenis" id="Tenis"/>
                         <Nav id="Botão">
-                            <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
+                            <Button variant="outline-info" onClick={()=>history.push("carrinho")}>Remover Item</Button>
                         </Nav>
                         <Nav id="Nome">
                             Tênis Adidas
@@ -134,7 +138,7 @@ function Carrinho() {
                     <div id="Produto2">
                         <img src="/imagens/Bolsa.jpeg" alt="Bolsa" id="Tenis"/>
                         <Nav id="Botão">
-                            <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
+                            <Button variant="outline-info" onClick={()=>history.push("carrinho")}>Remover Item</Button>
                         </Nav>
                         <Nav id="Nome">
                             Bolsa Marrom
@@ -149,11 +153,15 @@ function Carrinho() {
                             Compras - 72
                         </Nav>
                     </div>
-                    <div id="linha"/>
-                    <Nav id="Comprar">
-                        <Button variant="outline-primary" size="lg" onClick={()=>history.push("home")}>Finalizar Pedido</Button>
-                    </Nav>
                 </div>
+                <div id="linha1"/>
+                <div id="entrega">
+                    <h2>Envio para Belo Horizonte-MG</h2>
+                    <h5>12 dias úteis para entrega</h5>
+                </div>
+                <Nav id="Comprar">
+                    <Button variant="outline-primary" size="lg" onClick={Compra}>Finalizar Pedido</Button>
+                </Nav>
             </div>
         </div>
         
