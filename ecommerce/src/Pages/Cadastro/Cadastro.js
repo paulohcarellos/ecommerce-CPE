@@ -32,16 +32,9 @@ function Cadastro() {
                 cpf: cpf, 
                 birthdate: dataNascimento, 
                 created_at: 'TODO'
-<<<<<<< HEAD
             })
         }).catch((error) => console.log(error));
-=======
-        })
-        }).catch((error) =>
-            console.log(error)
-        );
-        history.push("home");
->>>>>>> Carrinho
+        history.push("cadastro")
     }
 
     return(
