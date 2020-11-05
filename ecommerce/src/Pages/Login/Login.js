@@ -8,13 +8,25 @@ function Login() {
     const [password, setPassword] = useState();
     const history = useHistory();
 
-    function login(){
-        if(email === "Hélio" && password === "123"){
-            alert("Bem-vindo! " + email);
-            history.push("home");
-        }else{
-            alert("Email ou senha incorretos");
-        };
+    function login() {
+        fetch('http://localhost:3030/login', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then(response => {
+            console.log(response.body);
+            /* if (response === undefined)
+                alert('Dados Invalidos\n*IMPLEMTAR LOGICA*')
+        
+            else {
+                alert(`Bem vindo ${response.first_name}\n*IMPLEMENTAR LOGICA*`);
+                history.push('home');
+            } */
+        });
     }
 
     return(
