@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
-import {Redirect, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -19,13 +19,10 @@ function Login() {
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response);
-            if(response.found){
-                history.push('home')
-            }
-            else {
+            if(response.found)
+                history.push('home');
+            else
                 document.querySelector('.notFound').style.display = 'block';
-            }
         });
     }
 

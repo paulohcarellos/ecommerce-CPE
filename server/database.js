@@ -12,6 +12,7 @@ let database = new sqlite3.Database('db.sqlite3', (error) => {
     if (error) {
         console.error(error.message);
     }
+    
     console.log('Connected');
 });
 
@@ -58,13 +59,13 @@ function registerUser(values) {
 }
 
 async function login(email, pass) {
-    const query = new Promise ((resolve) => {
+    return new Promise(resolve => { 
         database.get(`SELECT * FROM users WHERE email = ? AND password = ?`, [email, pass], (error, match) => {
             if (error)
                 return console.log(error);
 
-            resolve(match);
+            console.log(`User query: ${match}`);
+            resolve(match)
         });
     });
-    return await query;
 }
