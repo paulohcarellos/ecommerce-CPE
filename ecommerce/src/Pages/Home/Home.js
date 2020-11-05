@@ -91,7 +91,7 @@ function Home() {
                                 Entrar
                             </Navbar.Brand>
                             
-                            <Navbar.Brand href="#carrinho">
+                            <Navbar.Brand href="/carrinho">
                                 <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                                 Carrinho
                             </Navbar.Brand>

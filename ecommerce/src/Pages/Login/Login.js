@@ -30,7 +30,7 @@ function Login() {
     }
 
     return(
-        <pagina className="page">
+        <div className="page">
             <div className="cabecalho">
                 <div className="titulo">
                     <p>Bem-vindo(a) ao e-commerce que mais satisfaz clientes!</p>
@@ -54,7 +54,7 @@ function Login() {
             <div className="rodape">
                 <p>Desenvolvido por CPEJr.</p>
             </div>
-        </pagina>
+        </div>
     );
 }
 
