@@ -81,17 +81,31 @@
 }
 
 #Produto1{
+    flex-direction: row;
+    display: flex;
     margin-top: 30px;
     margin-left: 30px;
 }
 
+#Atributos{
+    margin-left: 100px;
+}
+
 #Produto2{
+    flex-direction: row;
+    display: flex;
     margin-top: 30px;
     margin-left: 30px;
 }
 
 #Tenis{
     height: 100px;
+    width: 105px;
+}
+
+#Bolsa{
+    height: 100px;
+    width: 100px;
 }
 
 #Compras{
@@ -99,16 +113,24 @@
 }
 
 #Botão{
-    margin-left: 900px;
+    margin-left: 50%;
+    margin-top: 30px;
+    height: 10px;
 }
 
 #entrega{
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 30px;
 }
 
 #Comprar{
-    margin-left: 1000px;
+    margin-left: 45%;
     margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+#Rodape{
+    flex-direction: row;
+    display: flex;
     margin-top: 30px;
 }
