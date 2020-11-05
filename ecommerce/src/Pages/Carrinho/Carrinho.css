@@ -112,8 +112,13 @@
     margin-bottom: 30px;
 }
 
+#dropdown-basic-button{
+    margin-left: 250px;
+    margin-top: 30px;
+}
+
 #Botão{
-    margin-left: 50%;
+    margin-left: 250px;
     margin-top: 30px;
     height: 10px;
 }
