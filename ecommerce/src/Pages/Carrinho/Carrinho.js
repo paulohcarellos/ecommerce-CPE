@@ -2,13 +2,19 @@ import React, {useState} from 'react';
 import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
-import "./Home.css"
+import {useHistory} from 'react-router-dom';
+import "./Carrinho.css"
 import { Link } from 'react-router-dom';
 
-function Home() {
+function Carrinho() {
+    const history = useHistory();
+    function Compra(){
+        alert("Pedido realizado com sucesso")
+        history.push("home")
+    }
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
-          href="/home"
+          href="/carrinho"
           ref={ref}
           onClick={(e) => {
             e.preventDefault();
@@ -51,8 +57,9 @@ function Home() {
       );
 
     return(
-            <div id="cabecalhoHome">
-                <Navbar id="navbar" fixed="top" expand="lg">
+        <div id="paginaCarrinho">
+            <div id="cabecalhoCarrinho">
+                <Navbar id="navbar" expand="lg">
                     <Navbar.Brand href="/home">LOGO</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -98,11 +105,74 @@ function Home() {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-    
             </div>
+            <div id="bodyCarrinho">
+                <Nav id="nav3">
+                    <Nav id="Inicio">
+                        <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
+                    </Nav>
+                </Nav>
+                <div id="linha1"/>
+                <div id="Produto">
+                    <div id="Produto1">
+                        <img src="/imagens/Tenis.png" alt="Tenis" id="Tenis"/>
+                        <div id="Atributos">
+                            <Nav id="Nome">
+                                Tênis Adidas
+                            </Nav>
+                            <Nav id="Preco">
+                                R$ 199,99
+                            </Nav>
+                            <Nav id="Estoque">
+                                Estoque - 3
+                            </Nav>
+                            <Nav id="Compras">
+                                Compras - 172
+                            </Nav>
+                        </div>
+                        <Nav id="Botão">
+                            <Button variant="outline-info" onClick={()=>history.push("carrinho")}>Remover Item</Button>
+                        </Nav>
+                    </div>
+                </div>
+                <div id="linha"/>
+                <div id="Produto">
+                    <div id="Produto2">
+                        <img src="/imagens/Bolsa.jpeg" alt="Bolsa" id="Bolsa"/>
+                        <div id="Atributos">
+                            <Nav id="Nome">
+                                Bolsa de Couro
+                            </Nav>
+                            <Nav id="Preco">
+                                R$ 79,99
+                            </Nav>
+                            <Nav id="Estoque">
+                                Estoque - 2
+                            </Nav>
+                            <Nav id="Compras">
+                                Compras - 72
+                            </Nav>
+                        </div>
+                        <Nav id="Botão">
+                            <Button variant="outline-info" onClick={()=>history.push("carrinho")}>Remover Item</Button>
+                        </Nav>
+                    </div>
+                </div>
+                <div id="linha1"/>
+                <div id="Rodape">
+                    <div id="entrega">
+                        <h2>Envio para Belo Horizonte-MG</h2>
+                        <h5>12 dias úteis para entrega</h5>
+                    </div>
+                    <Nav id="Comprar">
+                        <Button variant="outline-primary" size="lg" onClick={Compra}>Finalizar Pedido</Button>
+                    </Nav>
+                </div>
+            </div>
+        </div>
         
     );
-
+        
 }
 
-export default Home;
+export default Carrinho;
