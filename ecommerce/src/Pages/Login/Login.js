@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import './Login.css';
 
 function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [error, setError] = useState();
     const history = useHistory();
 
     function login() {
@@ -20,8 +19,11 @@ function Login() {
         })
         .then(response => response.json())
         .then(response => {
-            if(!response.found) {
-                setError('Usuário ou senha inválidos')
+            console.log(response);
+            if(response.found){
+                history.push('home')
+            }
+            else {
                 document.querySelector('.notFound').style.display = 'block';
             }
         });
@@ -47,10 +49,8 @@ function Login() {
                             <div className="notFound">
                                 Usuário e senha inválidos
                             </div>
-                            <Button variant="outline-dark" onClick={login}>Login</Button>
-                            
+                            <Button variant="outline-dark" onClick={login}>Login</Button>                          
                             <hr/>
-                            
                             <Button variant="outline-dark" onClick={()=>history.push("cadastro")}>Criar conta</Button>
                         </Form>
                 </div>
