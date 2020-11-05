@@ -25,11 +25,17 @@ app.post('/login', async (req, res) => {
 
     user = await login(email, pass);
     
-    if (user === undefined)
-        res.send('User not found!');
+    if (user === undefined) {
+        res.send({
+            found: false
+        });
+    }
 
-    else
-        res.send(user.first_name);
+    else {
+        res.send({
+            found: true,
+        });
+    }
 })
 
 app.post('/register', (req, res) => {
@@ -62,43 +68,3 @@ async function login(email, pass) {
     });
     return await query;
 }
-
-/* function insert(database, table, values) {
-
-    let placeholders = "";
-
-    for (let value in values)
-        placeholders += '?,';
-
-    placeholders = '(' + placeholders.slice(0, -1) + ')';
-
-    database.run(`INSERT INTO ${table}(${Object.keys(values)}) VALUES${placeholders}`, Object.values(values), (error) => {
-        if (error) {
-            return console.log(error.message)
-        }
-    });
-
-    return console.log(`Added 1 elements to the table ${user}`)
-}
-
-function select(database, tables, fields, conditions) {
-    
-    if (fields === '[]') {
-        fields = '*'
-    }
-
-    if (conditions === '[]') {
-        conditions = ''
-    }
-
-    else {
-        condition = 'WHERE ' + conditions;
-    }
-
-    database.all(`SELECT * FROM ${tables} ${conditions}`, [], (error, rows) => {
-        if (error) {
-            return console.log(error.message)
-        }
-        return console.log(rows);
-    });
-} */

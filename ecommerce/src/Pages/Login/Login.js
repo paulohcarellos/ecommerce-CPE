@@ -6,6 +6,7 @@ import './Login.css';
 function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [error, setError] = useState();
     const history = useHistory();
 
     function login() {
@@ -17,20 +18,17 @@ function Login() {
                 password: password
             })
         })
+        .then(response => response.json())
         .then(response => {
-            console.log(response.body);
-            /* if (response === undefined)
-                alert('Dados Invalidos\n*IMPLEMTAR LOGICA*')
-        
-            else {
-                alert(`Bem vindo ${response.first_name}\n*IMPLEMENTAR LOGICA*`);
-                history.push('home');
-            } */
+            if(!response.found) {
+                setError('Usuário ou senha inválidos')
+                document.querySelector('.notFound').style.display = 'block';
+            }
         });
     }
 
     return(
-        <pagina className="page">
+        <div className="page">
             <div className="cabecalho">
                 <div className="titulo">
                     <p>Bem-vindo(a) ao e-commerce que mais satisfaz clientes!</p>
@@ -46,7 +44,13 @@ function Login() {
                             <Form.Group controlId="senha">
                                 <Form.Control type="password" placeholder="Senha" onChange={(e)=>{setPassword(e.target.value)}}/>
                             </Form.Group>
-                            <Button variant="outline-dark" onClick={login}>Login</Button><hr/>
+                            <div className="notFound">
+                                Usuário e senha inválidos
+                            </div>
+                            <Button variant="outline-dark" onClick={login}>Login</Button>
+                            
+                            <hr/>
+                            
                             <Button variant="outline-dark" onClick={()=>history.push("cadastro")}>Criar conta</Button>
                         </Form>
                 </div>
@@ -54,7 +58,7 @@ function Login() {
             <div className="rodape">
                 <p>Desenvolvido por CPEJr.</p>
             </div>
-        </pagina>
+        </div>
     );
 }
 
