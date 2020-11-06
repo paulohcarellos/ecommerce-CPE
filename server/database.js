@@ -1,6 +1,7 @@
 const express = require('express')
 const sqlite3 = require('sqlite3');
 const cors = require('cors');
+const bcrypt = require('bcrypt')
 
 const app = express()
 const port = 3030
@@ -24,15 +25,13 @@ app.post('/login', async (req, res) => {
     email = req.body.email;
     pass = req.body.password;
 
-    user = await login(email, pass);
+    loginRes = await login(email, pass);
     
-    if (user === undefined) {
+    if (!loginRes) {
         res.send({
             found: false
         });
-    }
-
-    else {
+    } else {
         res.send({
             found: true,
         });
@@ -40,8 +39,7 @@ app.post('/login', async (req, res) => {
 })
 
 app.post('/register', (req, res) => {
-    values = Object.values(req.body);
-    registerUser(values);
+    registerUser(req.body);
     res.send('User registered!');
 })
 
@@ -49,7 +47,12 @@ app.listen(port, () => {
     console.log(`Ecommerce server listening at http://localhost:${port}`)
 })
 
-function registerUser(values) {
+async function registerUser(body) {
+
+    body.password = await bcrypt.hash(body.password, 10);
+    
+    values = Object.values(body)
+
     database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
             if (error)
@@ -60,12 +63,20 @@ function registerUser(values) {
 
 async function login(email, pass) {
     return new Promise(resolve => { 
-        database.get(`SELECT * FROM users WHERE email = ? AND password = ?`, [email, pass], (error, match) => {
+        database.get(`SELECT * FROM users WHERE email = ?`, email, (error, match) => {
             if (error)
                 return console.log(error);
 
-            console.log(`User query: ${match}`);
-            resolve(match)
+            bcrypt.compare(pass, match.password, (err, same) => {
+                if (err)
+                    console.log(err)
+                
+                if (same)
+                    resolve(true)
+
+                else
+                    resolve(false)
+            })
         });
     });
 }
