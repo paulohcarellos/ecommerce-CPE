@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
+import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown, DropdownButton}from 'react-bootstrap'
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
 import {useHistory} from 'react-router-dom';
@@ -130,6 +130,14 @@ function Carrinho() {
                                 Compras - 172
                             </Nav>
                         </div>
+                        <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant='Success'>
+                            <Dropdown.Item href="#/action-1">1</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">2</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">3</Dropdown.Item>
+                            <Dropdown.Item href="#/action-1">4</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">5</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">6</Dropdown.Item>
+                        </DropdownButton>
                         <Nav id="Botão">
                             <Button variant="outline-info" onClick={()=>history.push("carrinho")}>Remover Item</Button>
                         </Nav>
@@ -153,6 +161,14 @@ function Carrinho() {
                                 Compras - 72
                             </Nav>
                         </div>
+                        <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant="Secondary">
+                            <Dropdown.Item href="#/action-1">1</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">2</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">3</Dropdown.Item>
+                            <Dropdown.Item href="#/action-1">4</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">5</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">6</Dropdown.Item>
+                        </DropdownButton>
                         <Nav id="Botão">
                             <Button variant="outline-info" onClick={()=>history.push("carrinho")}>Remover Item</Button>
                         </Nav>
