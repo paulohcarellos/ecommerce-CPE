@@ -48,7 +48,7 @@ app.listen(port, () => {
 })
 
 async function registerUser(body) {
-
+    
     body.password = await bcrypt.hash(body.password, 10);
     
     values = Object.values(body)
@@ -62,6 +62,7 @@ async function registerUser(body) {
 }
 
 async function login(email, pass) {
+
     return new Promise(resolve => { 
         database.get(`SELECT * FROM users WHERE email = ?`, email, (error, match) => {
             if (error)

@@ -36,7 +36,9 @@ function register() {
                 birthdate: dataNascimento, 
                 created_at: 'TODO'
             })
-        }).catch((error) => console.log(error));
+        })
+        .then(history.push('login'))
+        .catch((error) => console.log(error));
     }
 
     return(
