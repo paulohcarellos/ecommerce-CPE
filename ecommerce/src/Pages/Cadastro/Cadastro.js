@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import {hash} from 'bcryptjs'
 import './Cadastro.css';
 
 function Cadastro() {
+
     const [primeiroNome, setPrimeiroNome] = useState();
     const [ultimoNome, setUltimoNome] = useState();
     const [email, setEmail] = useState();
@@ -16,7 +18,8 @@ function Cadastro() {
     const [dataNascimento, setDataNascimento] = useState();
     const history = useHistory();
 
-    function register() {
+function register() {
+
         fetch('http://localhost:3030/register', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -24,7 +27,7 @@ function Cadastro() {
                 first_name: primeiroNome,
                 last_name: ultimoNome, 
                 email: email, 
-                password: senha, 
+                password: senha,
                 state: estado, 
                 city: cidade, 
                 adress: endereco, 
@@ -33,8 +36,9 @@ function Cadastro() {
                 birthdate: dataNascimento, 
                 created_at: 'TODO'
             })
-        }).catch((error) => console.log(error));
-        history.push("cadastro")
+        })
+        .then(history.push('login'))
+        .catch((error) => console.log(error));
     }
 
     return(

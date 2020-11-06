@@ -48,6 +48,14 @@
     background-color: white;
 }
 
+.notFound {
+    display: none;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: red;
+}
+
 .rodape{
     height: 10%;
     width: 100%;

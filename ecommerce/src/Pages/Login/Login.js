@@ -17,15 +17,12 @@ function Login() {
                 password: password
             })
         })
+        .then(response => response.json())
         .then(response => {
-            console.log(response.body);
-            /* if (response === undefined)
-                alert('Dados Invalidos\n*IMPLEMTAR LOGICA*')
-        
-            else {
-                alert(`Bem vindo ${response.first_name}\n*IMPLEMENTAR LOGICA*`);
+            if(response.found)
                 history.push('home');
-            } */
+            else
+                document.querySelector('.notFound').style.display = 'block';
         });
     }
 
@@ -46,7 +43,11 @@ function Login() {
                             <Form.Group controlId="senha">
                                 <Form.Control type="password" placeholder="Senha" onChange={(e)=>{setPassword(e.target.value)}}/>
                             </Form.Group>
-                            <Button variant="outline-dark" onClick={login}>Login</Button><hr/>
+                            <div className="notFound">
+                                Usuário e senha inválidos
+                            </div>
+                            <Button variant="outline-dark" onClick={login}>Login</Button>                          
+                            <hr/>
                             <Button variant="outline-dark" onClick={()=>history.push("cadastro")}>Criar conta</Button>
                         </Form>
                 </div>
