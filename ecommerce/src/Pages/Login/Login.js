@@ -12,6 +12,7 @@ function Login() {
         fetch('http://localhost:3030/login', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
+            credentials: 'include',
             body: JSON.stringify({
                 email: email,
                 password: password
@@ -19,7 +20,7 @@ function Login() {
         })
         .then(response => response.json())
         .then(response => {
-            if(response.found)
+            if(response.login)
                 history.push('home');
             else
                 document.querySelector('.notFound').style.display = 'block';
