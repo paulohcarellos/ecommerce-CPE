@@ -5,6 +5,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import "./Home.css"
 import { Link } from 'react-router-dom';
 
+import ReactDOM from "react-dom";
+import Carousel from "react-elastic-carousel";
+import Item from "./Item";
+import {fotos} from "./Fotos"
+
 function Home() {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
@@ -50,9 +55,17 @@ function Home() {
             },
       );
 
+    const breakPoints = [
+        { width: 1, itemsToShow: 2 },
+        { width: 550, itemsToShow: 3, itemsToScroll: 2 },
+        { width: 768, itemsToShow: 4 },
+        { width: 1200, itemsToShow: 5 }
+    ];
+
     return(
+        <div id="paginaHome">
             <div id="cabecalhoHome">
-                <Navbar id="navbar" fixed="top" expand="lg">
+                <Navbar id="navbar" expand="lg">
                     <Navbar.Brand href="/home">LOGO</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -91,18 +104,35 @@ function Home() {
                                 Entrar
                             </Navbar.Brand>
                             
-                            <Navbar.Brand href="/carrinho">
+                            <Navbar.Brand href="#carrinho">
                                 <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                                 Carrinho
                             </Navbar.Brand>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-    
             </div>
+
+            <div className="Carousel">
+                <Carousel breakPoints={breakPoints}>
+                    {fotos.map( (foto) => {
+                        return(
+                        <Item>
+                            <h2>{foto.nome}</h2>
+                            <img id="img" alt={foto.descricao} src={foto.url}></img>
+                            <h5>{foto.descricao}</h5>
+                            <h4>{foto.preco}</h4>
+                        </Item> 
+                        )
+                    })}
+                </Carousel>
+            </div>
+
+        </div>
         
     );
 
 }
+
 
 export default Home;
