@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
-import {hash} from 'bcryptjs'
 import './Cadastro.css';
 
 function Cadastro() {
@@ -34,7 +33,7 @@ function register() {
                 phone: celular, 
                 cpf: cpf, 
                 birthdate: dataNascimento, 
-                created_at: 'TODO'
+                created_at: Date.now()
             })
         })
         .then(history.push('login'))
