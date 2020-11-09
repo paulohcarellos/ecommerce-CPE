@@ -5,6 +5,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import "./Home.css"
 import { Link } from 'react-router-dom';
 
+import ReactDOM from "react-dom";
+import Carousel from "react-elastic-carousel";
+import Item from "./Item";
+import {fotos} from "../../Fotos"
+
 function Home() {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
@@ -49,6 +54,13 @@ function Home() {
             );
             },
       );
+
+    const breakPoints = [
+        { width: 1, itemsToShow: 2 },
+        { width: 550, itemsToShow: 3, itemsToScroll: 2 },
+        { width: 768, itemsToShow: 4 },
+        { width: 1200, itemsToShow: 5 }
+    ];
 
     return(
         <div id="paginaHome">
@@ -100,10 +112,28 @@ function Home() {
                     </Navbar.Collapse>
                 </Navbar>
             </div>
+
+            <div className="Carousel">
+                <Carousel breakPoints={breakPoints}>
+                    {fotos.map( (foto) => {
+                        return(
+                        <Item>
+                            <h2>{foto.name}</h2>
+                            <img id="img" alt="batedeira" src={foto.url}></img>
+                            <h4>{foto.descricao}</h4>
+                            <h4>{foto.preco}</h4>
+                        </Item> 
+                        )
+                    })}
+                </Carousel>
+            </div>
+
         </div>
         
     );
 
 }
 
+const rootElement = document.getElementById("root");
+ReactDOM.render(<Home />, rootElement);
 export default Home;
