@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
-import {fotos} from "../../Fotos"
+import {fotos} from "./Fotos"
 
 function Home() {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -118,9 +118,9 @@ function Home() {
                     {fotos.map( (foto) => {
                         return(
                         <Item>
-                            <h2>{foto.name}</h2>
-                            <img id="img" alt="batedeira" src={foto.url}></img>
-                            <h4>{foto.descricao}</h4>
+                            <h2>{foto.nome}</h2>
+                            <img id="img" alt={foto.descricao} src={foto.url}></img>
+                            <h5>{foto.descricao}</h5>
                             <h4>{foto.preco}</h4>
                         </Item> 
                         )
@@ -134,6 +134,5 @@ function Home() {
 
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Home />, rootElement);
+
 export default Home;
