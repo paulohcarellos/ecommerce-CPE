@@ -56,8 +56,15 @@ app.get('/', (req, res) => {
     res.send(`Ecommerce backend server!\n`)
 });
 
-app.get('/auth', (req, res) => {
-    console.log(`User authenticated? ${req.isAuthenticated()}`);
+app.get('/user', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.send({
+            logged: true,
+            body : req.user
+        })
+    }
+    else {res.send({logged: false})}
+    
 });
 
 app.post('/login', (req, res, next) => {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
+import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown, ResponsiveEmbed}from 'react-bootstrap'
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
 import "./Home.css"
@@ -62,6 +62,23 @@ function Home() {
         { width: 1200, itemsToShow: 5 }
     ];
 
+    let user;
+
+    fetch('http://localhost:3030/user', {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(response => {
+        user = response.body
+
+        if (response.logged) {
+            document.querySelector('#login-name').innerHTML = user.first_name;
+        }
+    });
+
+    console.log(user);
+
     return(
         <div id="paginaHome">
             <div id="cabecalhoHome">
@@ -99,11 +116,10 @@ function Home() {
                             </div>
                         </Nav>
                         <Nav id="nav2">
-                            <Navbar.Brand href="/login">
+                            <Navbar.Brand href="/login" id="login">
                                 <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
-                                Entrar
+                                <span id='login-name'>Entrar</span>
                             </Navbar.Brand>
-                            
                             <Navbar.Brand href="#carrinho">
                                 <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                                 Carrinho
