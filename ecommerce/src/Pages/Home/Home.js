@@ -51,8 +51,9 @@ function Home() {
       );
 
     return(
+        <div id="paginaHome">
             <div id="cabecalhoHome">
-                <Navbar id="navbar" fixed="top" expand="lg">
+                <Navbar id="navbar" expand="lg">
                     <Navbar.Brand href="/home">LOGO</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -91,15 +92,15 @@ function Home() {
                                 Entrar
                             </Navbar.Brand>
                             
-                            <Navbar.Brand href="/carrinho">
+                            <Navbar.Brand href="#carrinho">
                                 <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                                 Carrinho
                             </Navbar.Brand>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-    
             </div>
+        </div>
         
     );
 
