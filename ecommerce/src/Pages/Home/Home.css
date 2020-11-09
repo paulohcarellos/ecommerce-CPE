@@ -2,6 +2,7 @@
     display: flex;
     background-color: #ABC4FF;
     width: 100%;
+    box-shadow: 0 2px 2px #6f6f70a6;
 }
 
 #navbar{
@@ -19,11 +20,13 @@
 }
 
 #formControl{
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.775);
 }
 
 #Pesquisar{
     width: 80%;
+    box-shadow: 2px 2px 2px #6f6f70a6;
+    border-radius: 5px;
 }
 
 #tags{
@@ -49,4 +52,10 @@
     width: 40px;
     height: 40px;
 }
+
+#paginaHome{
+    display: flex;
+    flex-direction: column;
+}
+
 
