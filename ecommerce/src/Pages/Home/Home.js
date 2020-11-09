@@ -53,7 +53,7 @@ function Home() {
     return(
             <div id="cabecalhoHome">
                 <Navbar id="navbar" fixed="top" expand="lg">
-                    <Navbar.Brand href="/home">LOGO</Navbar.Brand>
+                    <Navbar.Brand id="logotipo" href="/home"><img src="/imagens/logo.svg" alt="Logo" id="Logo"/></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav id="nav1">

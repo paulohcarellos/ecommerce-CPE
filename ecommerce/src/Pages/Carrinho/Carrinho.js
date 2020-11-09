@@ -60,7 +60,7 @@ function Carrinho() {
         <div id="paginaCarrinho">
             <div id="cabecalhoCarrinho">
                 <Navbar id="navbar" expand="lg">
-                    <Navbar.Brand href="/home">LOGO</Navbar.Brand>
+                    <Navbar.Brand id="logotipo" href="/home"><img src="/imagens/logo.svg" alt="Logo" id="Logo"/></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav id="nav1">
