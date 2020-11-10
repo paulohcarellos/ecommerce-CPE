@@ -31,6 +31,14 @@ async function registerUser(body) {
     });
 }
 
+async function registerProduct(body) {
+
+    database.run(`INSERT INTO products(name, vendor_id, price, quantity, description, created_at, image)
+        VALUES(?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+            if (error) {console.log(error);}
+    });
+}
+
 async function login(email, password) {
 
     return new Promise(resolve => { 

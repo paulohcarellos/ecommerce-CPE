@@ -9,28 +9,26 @@ function Header() {
     const [headerUser, setHeaderUser] = useState('Entrar');
     const [value, setValue] = useState('');
 
+    fetch('http://localhost:3030/user', {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(user => {
+        console.log(user);
+
+        if (user.logged) {
+            setHeaderUser(user.body.first_name);
+            document.querySelector('#login-icon').href = '/profile'
+        }
+    });
+
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a href="/carrinho" ref={ref} onClick={(e) => {e.preventDefault(); onClick(e);}}>
           {children}
           &#x25bc;
         </a>
     ));
-
-    let user;
-
-    fetch('http://localhost:3030/user', {
-        method: 'GET',
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(response => {
-        user = response.body
-
-        if (response.logged) {
-            setHeaderUser(user.first_name);
-            document.querySelector('#login-icon').href = '/profile'
-        }
-    });   
 
     const CustomMenu = React.forwardRef(
         ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {  

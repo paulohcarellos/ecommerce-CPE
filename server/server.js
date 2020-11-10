@@ -64,7 +64,6 @@ app.get('/user', (req, res) => {
         })
     }
     else {res.send({logged: false})}
-    
 });
 
 app.post('/login', (req, res, next) => {
@@ -84,6 +83,11 @@ app.post('/login', (req, res, next) => {
 app.post('/register', (req, res) => {
     db.registerUser(req.body);
     res.send('User registered!');
+});
+
+app.post('/sell', (req, res) => {
+    db.registerProduct(req.body);
+    res.send('Product registered!');
 });
 
 app.listen(port, () => {

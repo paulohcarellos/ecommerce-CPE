@@ -3,6 +3,7 @@ import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown, DropdownButton}
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
 import {useHistory} from 'react-router-dom';
+import Header from '../../Components/Header'
 import "./Carrinho.css"
 import { Link } from 'react-router-dom';
 
@@ -58,54 +59,7 @@ function Carrinho() {
 
     return(
         <div id="paginaCarrinho">
-            <div id="cabecalhoCarrinho">
-                <Navbar id="navbar" expand="lg">
-                    <Navbar.Brand href="/home">LOGO</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav id="nav1">
-                            <InputGroup id="Pesquisar" className="mb-2">
-                                <FormControl
-                                    id="formControl"
-                                    placeholder="Encontre os melhores produtos..."
-                                    aria-label="Pesquisar"
-                                    aria-describedby="basic-addon2"
-                                    
-                                />
-                                <InputGroup.Append>
-                                    <Button variant="outline-dark">Pesquisar</Button>{' '}
-                                </InputGroup.Append>
-                            </InputGroup>
-                            <div id="tags">
-                                <Dropdown className="mr-1 ml-2">
-                                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                                    Categorias
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu as={CustomMenu}>
-                                        <Dropdown.Item eventKey="1">Tecnologia</Dropdown.Item>
-                                        <Dropdown.Item eventKey="2">Casa e eletrodomésticos</Dropdown.Item>
-                                        <Dropdown.Item eventKey="3">Esporte e Lazer</Dropdown.Item>
-                                        <Dropdown.Item eventKey="4">Moda e Beleza</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                                <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                                <Link to="#vendas" className="ml-1 mr-2">Venda aqui!</Link>
-                            </div>
-                        </Nav>
-                        <Nav id="nav2">
-                            <Navbar.Brand href="/login">
-                                <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
-                                Entrar
-                            </Navbar.Brand>
-                            
-                            <Navbar.Brand href="/carrinho">
-                                <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
-                                Carrinho
-                            </Navbar.Brand>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-            </div>
+            <Header />
             <div id="bodyCarrinho">
                 <Nav id="nav3">
                     <Nav id="Inicio">
