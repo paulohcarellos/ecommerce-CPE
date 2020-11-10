@@ -5,7 +5,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import "./Home.css"
 import { Link } from 'react-router-dom';
 
-import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import {fotos} from "./Fotos"
@@ -56,10 +55,10 @@ function Home() {
       );
 
     const breakPoints = [
-        { width: 1, itemsToShow: 2 },
-        { width: 550, itemsToShow: 3, itemsToScroll: 2 },
-        { width: 768, itemsToShow: 4 },
-        { width: 1200, itemsToShow: 5 }
+        { width: 1, itemsToShow: 1 },
+        { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+        { width: 768, itemsToShow: 3, itemsToScroll: 3 },
+        { width: 1200, itemsToShow: 5, itemsToScroll: 5 }
     ];
 
     return(
@@ -113,20 +112,27 @@ function Home() {
                 </Navbar>
             </div>
 
-            <div className="Carousel">
-                <Carousel breakPoints={breakPoints}>
-                    {fotos.map( (foto) => {
-                        return(
-                        <Item>
-                            <h2>{foto.nome}</h2>
-                            <img id="img" alt={foto.descricao} src={foto.url}></img>
-                            <h5>{foto.descricao}</h5>
-                            <h4>{foto.preco}</h4>
-                        </Item> 
-                        )
-                    })}
-                </Carousel>
+            <video autoplay="true" muted loop id="myVideo">
+                <source src="BFvideo.mp4" type="video/mp4"></source>
+            </video>
+            <div className="produtos1">
+                <h2><b>Os mais vendidos:</b></h2>
+                <div className="Carousel">
+                    <Carousel breakPoints={breakPoints}>
+                        {fotos.map( (foto) => {
+                            return(
+                            <Item id="item">
+                                <h3>{foto.nome}</h3>
+                                <img id="img" alt={foto.descricao} src={foto.url}></img>
+                                <h5>{foto.descricao}</h5>
+                                <h4>{foto.preco}</h4>
+                            </Item> 
+                            )
+                        })}
+                    </Carousel>
+                </div>
             </div>
+
 
         </div>
         
