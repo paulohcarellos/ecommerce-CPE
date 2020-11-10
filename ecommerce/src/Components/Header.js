@@ -44,13 +44,13 @@ function Header() {
                 </div>
             );
         }
-  );
+    );
 
-  return (
-    <Navbar id="navbar" expand="lg">
-        <Navbar.Brand href="/home">LOGO</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+    return (
+        <Navbar id="navbar" expand="lg">
+            <Navbar.Brand href="/home">LOGO</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
                 <Nav id="nav1">
                     <InputGroup id="Pesquisar" className="mb-2">
                         <FormControl
@@ -77,16 +77,15 @@ function Header() {
                             </Dropdown.Menu>
                         </Dropdown>
                         <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                        <Link to="#vendas" className="ml-1 mr-2">Venda aqui!</Link>
+                        <Link to="/venda" className="ml-1 mr-2">Venda aqui!</Link>
                     </div>
                 </Nav>
                 <Nav id="nav2">
-                    <Navbar.Brand href="/login" id='login-icon'>
+                    <Navbar.Brand href="/login" id="login-icon">
                         <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
                         {headerUser}
                     </Navbar.Brand>
-                    
-                    <Navbar.Brand href="/carrinho">
+                    <Navbar.Brand href="#carrinho">
                         <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                         Carrinho
                     </Navbar.Brand>

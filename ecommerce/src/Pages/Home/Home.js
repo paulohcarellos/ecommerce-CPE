@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
-import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown, ResponsiveEmbed}from 'react-bootstrap'
-import { VscAccount } from "react-icons/vsc";
-import { FaShoppingCart } from "react-icons/fa";
+import { FormControl }from 'react-bootstrap'
 import "./Home.css"
-import { Link } from 'react-router-dom';
-import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import {fotos} from "./Fotos"
+import Header from '../../Components/Header'
 
 function Home() {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -83,53 +80,7 @@ function Home() {
 
     return(
         <div id="paginaHome">
-            <div id="cabecalhoHome">
-                <Navbar id="navbar" expand="lg">
-                    <Navbar.Brand href="/home">LOGO</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav id="nav1">
-                            <InputGroup id="Pesquisar" className="mb-2">
-                                <FormControl
-                                    id="formControl"
-                                    placeholder="Encontre os melhores produtos..."
-                                    aria-label="Pesquisar"
-                                    aria-describedby="basic-addon2"
-                                    
-                                />
-                                <InputGroup.Append>
-                                    <Button variant="outline-dark">Pesquisar</Button>{' '}
-                                </InputGroup.Append>
-                            </InputGroup>
-                            <div id="tags">
-                                <Dropdown className="mr-1 ml-2">
-                                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                                    Categorias
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu as={CustomMenu}>
-                                        <Dropdown.Item eventKey="1">Tecnologia</Dropdown.Item>
-                                        <Dropdown.Item eventKey="2">Casa e eletrodomésticos</Dropdown.Item>
-                                        <Dropdown.Item eventKey="3">Esporte e Lazer</Dropdown.Item>
-                                        <Dropdown.Item eventKey="4">Moda e Beleza</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                                <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                                <Link to="/venda" className="ml-1 mr-2">Venda aqui!</Link>
-                            </div>
-                        </Nav>
-                        <Nav id="nav2">
-                            <Navbar.Brand href="/login" id="login-icon">
-                                <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
-                                {name}
-                            </Navbar.Brand>
-                            <Navbar.Brand href="#carrinho">
-                                <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
-                                Carrinho
-                            </Navbar.Brand>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-            </div>
+            <Header />
 
             <video autoplay="true" muted loop id="myVideo">
                 <source src="BFvideo.mp4" type="video/mp4"></source>
