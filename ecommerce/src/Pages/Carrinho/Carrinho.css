@@ -73,7 +73,14 @@
     border: 1px solid black;
     margin-left: 30px;
     margin-right: 30px;
+    margin-top: 2%;
 }
+
+#linha2{
+    border: 0.1px solid black;
+    margin-top: 2%;
+}
+
 
 #Produto{
     margin-top: 30px;
@@ -88,7 +95,9 @@
 }
 
 #Atributos{
-    margin-left: 100px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 3%;
 }
 
 #Produto2{
@@ -98,12 +107,19 @@
     margin-left: 30px;
 }
 
-#Tenis{
+#Imagem{
+    background-color: white;
+    text-align: center;
+    border: 1px solid black;
+    width: 15%;
+}
+
+#Item1{
     height: 100px;
     width: 105px;
 }
 
-#Bolsa{
+#Item2{
     height: 100px;
     width: 100px;
 }
@@ -113,25 +129,27 @@
 }
 
 #dropdown-basic-button{
-    margin-left: 250px;
-    margin-top: 30px;
+    margin-left: 90%;
+    margin-top: 45%;
+    background-color: whitesmoke;
+    border: 1px solid black;
 }
 
 #Botão{
-    margin-left: 250px;
-    margin-top: 30px;
+    margin-left: 30%;
+    margin-top: 6%;
     height: 10px;
 }
 
 #entrega{
-    margin-top: 20px;
-    margin-left: 30px;
+    margin-top: 2%;
+    margin-left: 3%;
 }
 
 #Comprar{
     margin-left: 45%;
-    margin-bottom: 30px;
-    margin-top: 40px;
+    margin-bottom: 3%;
+    margin-top: 3%;
 }
 
 #Rodape{

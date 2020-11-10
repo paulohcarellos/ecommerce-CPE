@@ -69,13 +69,17 @@ function Carrinho() {
                 <div id="linha1"/>
                 <div id="Produto">
                     <div id="Produto1">
-                        <img src="/imagens/Tenis.png" alt="Tenis" id="Tenis"/>
+                        <div id="Imagem">
+                            <h3>Playstation 5</h3>
+                            <img src="/imagens/PlayStation5.jpg" alt="Item1" id="Item1"/>
+                            <h4>R$ 4000,00</h4>
+                        </div>
                         <div id="Atributos">
-                            <Nav id="Nome">
-                                Tênis Adidas
+                            <Nav id="Vendedor">
+                                Vendedor - Caio
                             </Nav>
-                            <Nav id="Preco">
-                                R$ 199,99
+                            <Nav id="Prazo">
+                                Prazo - 7 dias
                             </Nav>
                             <Nav id="Estoque">
                                 Estoque - 3
@@ -100,13 +104,17 @@ function Carrinho() {
                 <div id="linha"/>
                 <div id="Produto">
                     <div id="Produto2">
-                        <img src="/imagens/Bolsa.jpeg" alt="Bolsa" id="Bolsa"/>
+                        <div id="Imagem">
+                            <h3>Samsung TV</h3>
+                            <img src="/imagens/SamsungSmartTV50CrystalUHD.jpg" alt="Item2" id="Item2"/>
+                            <h4>R$ 3000,00</h4>
+                        </div>
                         <div id="Atributos">
-                            <Nav id="Nome">
-                                Bolsa de Couro
+                            <Nav id="Vendedor">
+                                Vendedor - João
                             </Nav>
-                            <Nav id="Preco">
-                                R$ 79,99
+                            <Nav id="Prazo">
+                                Prazo - 12 dias
                             </Nav>
                             <Nav id="Estoque">
                                 Estoque - 2
@@ -128,7 +136,7 @@ function Carrinho() {
                         </Nav>
                     </div>
                 </div>
-                <div id="linha1"/>
+                <div id="linha2"/>
                 <div id="Rodape">
                     <div id="entrega">
                         <h2>Envio para Belo Horizonte-MG</h2>
