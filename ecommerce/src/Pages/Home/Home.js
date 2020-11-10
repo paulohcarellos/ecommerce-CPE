@@ -26,6 +26,8 @@ function Home() {
       ));
 
     const [value, setValue] = useState('');
+    const [name, setName] = useState('Entrar');
+
     const CustomMenu = React.forwardRef(
         ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
             
@@ -73,7 +75,8 @@ function Home() {
         user = response.body
 
         if (response.logged) {
-            document.querySelector('#login-name').innerHTML = user.first_name;
+            setName(user.first_name);
+            document.querySelector('#login-icon').href = '/profile'
         }
     });
 
@@ -112,13 +115,13 @@ function Home() {
                                     </Dropdown.Menu>
                                 </Dropdown>
                                 <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                                <Link to="#vendas" className="ml-1 mr-2">Venda aqui!</Link>
+                                <Link to="/venda" className="ml-1 mr-2">Venda aqui!</Link>
                             </div>
                         </Nav>
                         <Nav id="nav2">
-                            <Navbar.Brand href="/login" id="login">
+                            <Navbar.Brand href="/login" id="login-icon">
                                 <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
-                                <span id='login-name'>Entrar</span>
+                                {name}
                             </Navbar.Brand>
                             <Navbar.Brand href="#carrinho">
                                 <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>

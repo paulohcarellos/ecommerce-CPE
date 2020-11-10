@@ -22,10 +22,10 @@ app.use(session({
     genid: () => {
       return uuid() // use UUIDs for session IDs
     },
-    store: new FileStore(),
+    store: new FileStore({logFn: () => {}}),
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: false,
         maxAge: (60 * 60 * 24 * 30) //30 days :)
