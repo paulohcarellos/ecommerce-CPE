@@ -8,26 +8,26 @@ export const fotos = [
     {
         nome: "Smart Tv",
         url: "/imagens/SamsungSmartTV50CrystalUHD.jpg",
-        descricao: "Smart TV Samsung 50 Crystal UHD",
+        descricao: "Smart TV Samsung",
         preco: "R$3000,00"
     },
     {
-        nome: "",
-        url: "",
-        descricao: "",
-        preco: ""
+        nome: "Air Friyer",
+        url: "/imagens/FritadeiraElétrica.jpg",
+        descricao: "Fritadeira Elétrica",
+        preco: "R$ 250,00"
     },
     {
-        nome: "",
-        url: "",
-        descricao: "",
-        preco: ""
+        nome: "Moletom de otaku",
+        url: "/imagens/MoletomAkatsukiNaruto.jpg",
+        descricao: "Manto da Akatsuki",
+        preco: "R$ sua alma"
     },
     {
-        nome: "",
-        url: "",
-        descricao: "",
-        preco: ""
+        nome: "Nintendo Switch",
+        url: "/imagens/NintendoSwitch.jpg",
+        descricao: "Console",
+        preco: "R$ 2600,00"
     },
     {
         nome: "",
