@@ -17,7 +17,7 @@ function Cadastro() {
     const [dataNascimento, setDataNascimento] = useState();
     const history = useHistory();
 
-function register() {
+    function register() {
 
         fetch('http://localhost:3030/register', {
             method: 'POST',
@@ -34,8 +34,8 @@ function register() {
                 cpf: cpf, 
                 birthdate: dataNascimento, 
                 created_at: Date.now()
+                })
             })
-        })
         .then(history.push('login'))
         .catch((error) => console.log(error));
     }
