@@ -1,12 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { FormControl }from 'react-bootstrap'
 import "./Home.css"
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import {fotos} from "./Fotos"
 import Header from '../../Components/Header'
+import {getUser} from '../../Components/tools'
 
 function Home() {
+
+    const [user, setUser] = useState(null);
+    const [value, setValue] = useState('');
+
+    useEffect(async () => {
+        getUser().then(user => setUser(user))
+    }, [])
+
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
           href="/home"
@@ -19,10 +28,7 @@ function Home() {
           {children}
           &#x25bc;
         </a>
-      ));
-
-    const [value, setValue] = useState('');
-    const [name, setName] = useState('Entrar');
+    ));
 
     const CustomMenu = React.forwardRef(
         ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
@@ -60,27 +66,9 @@ function Home() {
         { width: 1200, itemsToShow: 5, itemsToScroll: 5 }
     ];
 
-    let user;
-
-    fetch('http://localhost:3030/user', {
-        method: 'GET',
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(response => {
-        user = response.body
-
-        if (response.logged) {
-            setName(user.first_name);
-            document.querySelector('#login-icon').href = '/profile'
-        }
-    });
-
-    console.log(user);
-
     return(
         <div id="paginaHome">
-            <Header />
+            <Header user={user}/>
 
             <video autoplay="true" muted loop id="myVideo">
                 <source src="BFvideo.mp4" type="video/mp4"></source>
