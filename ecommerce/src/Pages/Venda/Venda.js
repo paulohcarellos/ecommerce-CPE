@@ -21,33 +21,13 @@ function Venda() {
         return options
     }
 
-    function register() {
-
-        fetch('http://localhost:3030/register', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                name: nome,
-                price: preco, 
-                email: email, 
-                password: senha,
-                state: estado, 
-                city: cidade, 
-                adress: endereco, 
-                phone: celular, 
-                cpf: cpf, 
-                birthdate: dataNascimento, 
-                created_at: Date.now()
-                })
-            })
-        .then(history.push('home'))
-        .catch((error) => console.log(error));
-    }
+    
 
     return (
         <div>
             <Header />
             <div id='form-wrapper'>
+                <div id="divPai">
                 <Form className='product-form'>
                     <Form.Group controlId="product-name">
                         <Form.Label>Nome do produto</Form.Label>
@@ -62,7 +42,7 @@ function Venda() {
                         </Col>
                         <Col>
                             <Form.Group>
-                                <Form.Label>Quantidade em estoque</Form.Label>
+                                <Form.Label>Quantidade</Form.Label>
                                 <Form.Control as="select" onChange={(e)=>{setQuantidade(e.target.value)}}>
                                     {selectOptions()}
                                 </Form.Control>
@@ -88,6 +68,7 @@ function Venda() {
                         Anunciar
                     </Button>
                 </Form>
+                </div>
             </div>
         </div> 
     )
