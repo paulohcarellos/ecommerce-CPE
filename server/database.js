@@ -32,9 +32,11 @@ async function registerUser(body) {
 }
 
 async function registerProduct(body) {
+    console.log(body);
+    values = Object.values(body);
 
-    database.run(`INSERT INTO products(name, vendor_id, price, quantity, description, created_at, image)
-        VALUES(?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+    database.run(`INSERT INTO products(name, vendor_id, price, quantity, description, category, image, created_at)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
             if (error) {console.log(error);}
     });
 }
@@ -63,5 +65,6 @@ async function login(email, password) {
 module.exports = {
     get,
     registerUser,
+    registerProduct,
     login
 }

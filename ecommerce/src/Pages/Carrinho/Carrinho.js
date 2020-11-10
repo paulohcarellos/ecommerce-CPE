@@ -1,65 +1,28 @@
-import React, {useState} from 'react';
-import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown, DropdownButton}from 'react-bootstrap'
-import { VscAccount } from "react-icons/vsc";
+import React, {useState, useEffect} from 'react';
+import { Nav, Button, Dropdown, DropdownButton} from 'react-bootstrap'
 import { FaShoppingCart } from "react-icons/fa";
 import {useHistory} from 'react-router-dom';
 import Header from '../../Components/Header'
+import {getUser} from '../../Components/tools'
 import "./Carrinho.css"
-import { Link } from 'react-router-dom';
 
 function Carrinho() {
+
+    const [user, setUser] = useState(null);
     const history = useHistory();
+
+    useEffect(async () => {
+        getUser().then(user => setUser(user))
+    }, [])
+
     function Compra(){
         alert("Pedido realizado com sucesso")
         history.push("home")
     }
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-        <a
-          href="/carrinho"
-          ref={ref}
-          onClick={(e) => {
-            e.preventDefault();
-            onClick(e);
-          }}
-        >
-          {children}
-          &#x25bc;
-        </a>
-      ));
-
-    const [value, setValue] = useState('');
-    const CustomMenu = React.forwardRef(
-        ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
-            
-        
-        return (
-            <div
-            ref={ref}
-            style={style}
-            className={className}
-            aria-labelledby={labeledBy}
-            >
-                <FormControl
-                    autoFocus
-                    className="mx-3 my-2 w-auto"
-                    placeholder="Filtrar..."
-                    onChange={(e) => setValue(e.target.value)}
-                    value={value}
-                />
-                <ul className="list-unstyled">
-                    {React.Children.toArray(children).filter(
-                    (child) =>
-                        !value || child.props.children.toLowerCase().startsWith(value),
-                    )}
-                </ul>
-            </div>
-            );
-            },
-      );
 
     return(
         <div id="paginaCarrinho">
-            <Header />
+            <Header user={user}/>
             <div id="bodyCarrinho">
                 <Nav id="nav3">
                     <Nav id="Inicio">

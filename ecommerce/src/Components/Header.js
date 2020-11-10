@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { getUser } from './tools'
 
-function Header() {
+function Header(props) {
 
     const [headerUser, setHeaderUser] = useState('Entrar');
     const [value, setValue] = useState('');
 
-    fetch('http://localhost:3030/user', {
-        method: 'GET',
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(user => {
-        console.log(user);
-
-        if (user.logged) {
-            setHeaderUser(user.body.first_name);
-            document.querySelector('#login-icon').href = '/profile'
-        }
-    });
+    useEffect(() => {
+        if (props.user !== null && props.user !== undefined && props.user.logged)
+            setHeaderUser(props.user.body.first_name)
+    }, props.user)
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a href="/carrinho" ref={ref} onClick={(e) => {e.preventDefault(); onClick(e);}}>
@@ -58,7 +50,6 @@ function Header() {
                             placeholder="Encontre os melhores produtos..."
                             aria-label="Pesquisar"
                             aria-describedby="basic-addon2"
-                            
                         />
                         <InputGroup.Append>
                             <Button variant="outline-dark">Pesquisar</Button>{' '}
