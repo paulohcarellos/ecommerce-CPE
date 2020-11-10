@@ -1,83 +1,67 @@
-const express = require('express')
 const sqlite3 = require('sqlite3');
-const cors = require('cors');
 const bcrypt = require('bcrypt')
 
-const app = express()
-const port = 3030
-
-app.use(cors());
-app.use(express.json());
-
-let database = new sqlite3.Database('db.sqlite3', (error) => {
-    if (error) {
-        console.error(error.message);
-    }
+let database = new sqlite3.Database('db.sqlite3', (err) => {
+    if (err) {console.error(err.message);}
     
-    console.log('Connected');
+    console.log('Connected to the database!');
 });
 
-app.get('/', async (req, res) => {
-    res.send('Experimenting')
-})
-
-app.post('/login', async (req, res) => {
-    email = req.body.email;
-    pass = req.body.password;
-
-    loginRes = await login(email, pass);
+async function get(id) {
     
-    if (!loginRes) {
-        res.send({
-            found: false
+    return new Promise(resolve => { 
+        database.get(`SELECT * FROM users WHERE id = ?`, id, (error, match) => {
+            
+            if (error) {return console.log(error);}
+            
+            if (match) {resolve(match)}
+            else {resolve(false)}
         });
-    } else {
-        res.send({
-            found: true,
-        });
-    }
-})
-
-app.post('/register', (req, res) => {
-    registerUser(req.body);
-    res.send('User registered!');
-})
-
-app.listen(port, () => {
-    console.log(`Ecommerce server listening at http://localhost:${port}`)
-})
-
-async function registerUser(body) {
-    
-    body.password = await bcrypt.hash(body.password, 10);
-    
-    values = Object.values(body)
-
-    database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
-            if (error)
-                return console.log(error);
-            console.log(`User registered: ${this.lastID}`);
     });
 }
 
-async function login(email, pass) {
+async function registerUser(body) {
+    
+    body.password = await bcrypt.hash(body.password, 10);   
+    values = Object.values(body);
+
+    database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+            if (error) {console.log(error);}
+    });
+}
+
+async function registerProduct(body) {
+
+    database.run(`INSERT INTO products(name, vendor_id, price, quantity, description, created_at, image)
+        VALUES(?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+            if (error) {console.log(error);}
+    });
+}
+
+async function login(email, password) {
 
     return new Promise(resolve => { 
         database.get(`SELECT * FROM users WHERE email = ?`, email, (error, match) => {
-            if (error)
-                return console.log(error);
+            if (error) {return console.log(error);}
 
-            bcrypt.compare(pass, match.password, (err, same) => {
-                if (err)
-                    console.log(err)
-                
-                if (same)
-                    resolve(true)
+            if (match === undefined) {
+                resolve(undefined)
 
-                else
-                    resolve(false)
-            })
+            } else {
+                bcrypt.compare(password, match.password, (err, same) => {
+                if (err) {console.log(err);}
+                    
+                if (same) {resolve(match);}                    
+                else {resolve(undefined);}
+                });
+            }
         });
     });
+}
+
+module.exports = {
+    get,
+    registerUser,
+    login
 }

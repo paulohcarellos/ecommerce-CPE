@@ -4,6 +4,7 @@ import Cadastro from './Pages/Cadastro';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
 import Carrinho from './Pages/Carrinho';
+import Venda from './Pages/Venda'
 import Testing from './Pages/Testing'
 
 function Routes() {
@@ -15,6 +16,7 @@ function Routes() {
                 <Route path="/home" component={Home}/>
                 <Route path="/testing" component={Testing}/>
                 <Route path="/carrinho" component={Carrinho}/>
+                <Route path="/venda" component={Venda}/>
             </Switch>
         </BrowserRouter>
     );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import Header from '../../Components/Header'
 import './Login.css';
 
 function Login() {
@@ -12,6 +13,7 @@ function Login() {
         fetch('http://localhost:3030/login', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
+            credentials: 'include',
             body: JSON.stringify({
                 email: email,
                 password: password
@@ -19,7 +21,7 @@ function Login() {
         })
         .then(response => response.json())
         .then(response => {
-            if(response.found)
+            if(response.login)
                 history.push('home');
             else
                 document.querySelector('.notFound').style.display = 'block';
@@ -28,11 +30,7 @@ function Login() {
 
     return(
         <div className="page">
-            <div className="cabecalho">
-                <div className="titulo">
-                    <p>Bem-vindo(a) ao e-commerce que mais satisfaz clientes!</p>
-                </div>
-            </div>
+            <Header />
             <div className="geral">
                 <div className="container">
                         <h1><b>Entrar</b></h1>

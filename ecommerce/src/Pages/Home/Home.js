@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
-import { VscAccount } from "react-icons/vsc";
-import { FaShoppingCart } from "react-icons/fa";
+import { FormControl }from 'react-bootstrap'
 import "./Home.css"
-import { Link } from 'react-router-dom';
+import Carousel from "react-elastic-carousel";
+import Item from "./Item";
+import {fotos} from "./Fotos"
+import Header from '../../Components/Header'
 
 function Home() {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -21,6 +22,8 @@ function Home() {
       ));
 
     const [value, setValue] = useState('');
+    const [name, setName] = useState('Entrar');
+
     const CustomMenu = React.forwardRef(
         ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
             
@@ -50,59 +53,62 @@ function Home() {
             },
       );
 
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+        { width: 768, itemsToShow: 3, itemsToScroll: 3 },
+        { width: 1200, itemsToShow: 5, itemsToScroll: 5 }
+    ];
+
+    let user;
+
+    fetch('http://localhost:3030/user', {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(response => {
+        user = response.body
+
+        if (response.logged) {
+            setName(user.first_name);
+            document.querySelector('#login-icon').href = '/profile'
+        }
+    });
+
+    console.log(user);
+
     return(
-            <div id="cabecalhoHome">
-                <Navbar id="navbar" fixed="top" expand="lg">
-                    <Navbar.Brand href="/home">LOGO</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav id="nav1">
-                            <InputGroup id="Pesquisar" className="mb-2">
-                                <FormControl
-                                    id="formControl"
-                                    placeholder="Encontre os melhores produtos..."
-                                    aria-label="Pesquisar"
-                                    aria-describedby="basic-addon2"
-                                    
-                                />
-                                <InputGroup.Append>
-                                    <Button variant="outline-dark">Pesquisar</Button>{' '}
-                                </InputGroup.Append>
-                            </InputGroup>
-                            <div id="tags">
-                                <Dropdown className="mr-1 ml-2">
-                                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                                    Categorias
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu as={CustomMenu}>
-                                        <Dropdown.Item eventKey="1">Tecnologia</Dropdown.Item>
-                                        <Dropdown.Item eventKey="2">Casa e eletrodomésticos</Dropdown.Item>
-                                        <Dropdown.Item eventKey="3">Esporte e Lazer</Dropdown.Item>
-                                        <Dropdown.Item eventKey="4">Moda e Beleza</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                                <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                                <Link to="#vendas" className="ml-1 mr-2">Venda aqui!</Link>
-                            </div>
-                        </Nav>
-                        <Nav id="nav2">
-                            <Navbar.Brand href="/login">
-                                <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
-                                Entrar
-                            </Navbar.Brand>
-                            
-                            <Navbar.Brand href="/carrinho">
-                                <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
-                                Carrinho
-                            </Navbar.Brand>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-    
+        <div id="paginaHome">
+            <Header />
+
+            <video autoplay="true" muted loop id="myVideo">
+                <source src="BFvideo.mp4" type="video/mp4"></source>
+            </video>
+            <div className="produtos1">
+                <h2><b>Os mais vendidos:</b></h2>
+                <div className="Carousel">
+                    <Carousel breakPoints={breakPoints}>
+                        {fotos.map( (foto) => {
+                            return(
+                            <Item id="item">
+                                <h3>{foto.nome}</h3>
+                                <img id="img" alt={foto.descricao} src={foto.url}></img>
+                                <h5>{foto.descricao}</h5>
+                                <h4>{foto.preco}</h4>
+                            </Item> 
+                            )
+                        })}
+                    </Carousel>
+                </div>
             </div>
+
+
+        </div>
         
     );
 
 }
+
 
 export default Home;
