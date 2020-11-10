@@ -21,28 +21,7 @@ function Venda() {
         return options
     }
 
-    function register() {
-
-        fetch('http://localhost:3030/register', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                name: nome,
-                price: preco, 
-                email: email, 
-                password: senha,
-                state: estado, 
-                city: cidade, 
-                adress: endereco, 
-                phone: celular, 
-                cpf: cpf, 
-                birthdate: dataNascimento, 
-                created_at: Date.now()
-                })
-            })
-        .then(history.push('home'))
-        .catch((error) => console.log(error));
-    }
+    
 
     return (
         <div>
