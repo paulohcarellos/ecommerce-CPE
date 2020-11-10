@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown}from 'react-bootstrap'
+import { Nav, Navbar, FormControl, InputGroup, Button, Dropdown, ResponsiveEmbed}from 'react-bootstrap'
 import { VscAccount } from "react-icons/vsc";
 import { FaShoppingCart } from "react-icons/fa";
 import "./Home.css"
 import { Link } from 'react-router-dom';
-
+import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import {fotos} from "./Fotos"
@@ -25,6 +25,8 @@ function Home() {
       ));
 
     const [value, setValue] = useState('');
+    const [name, setName] = useState('Entrar');
+
     const CustomMenu = React.forwardRef(
         ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
             
@@ -61,6 +63,24 @@ function Home() {
         { width: 1200, itemsToShow: 5, itemsToScroll: 5 }
     ];
 
+    let user;
+
+    fetch('http://localhost:3030/user', {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(response => {
+        user = response.body
+
+        if (response.logged) {
+            setName(user.first_name);
+            document.querySelector('#login-icon').href = '/profile'
+        }
+    });
+
+    console.log(user);
+
     return(
         <div id="paginaHome">
             <div id="cabecalhoHome">
@@ -94,15 +114,14 @@ function Home() {
                                     </Dropdown.Menu>
                                 </Dropdown>
                                 <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                                <Link to="#vendas" className="ml-1 mr-2">Venda aqui!</Link>
+                                <Link to="/venda" className="ml-1 mr-2">Venda aqui!</Link>
                             </div>
                         </Nav>
                         <Nav id="nav2">
-                            <Navbar.Brand href="/login">
+                            <Navbar.Brand href="/login" id="login-icon">
                                 <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
-                                Entrar
+                                {name}
                             </Navbar.Brand>
-                            
                             <Navbar.Brand href="#carrinho">
                                 <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                                 Carrinho

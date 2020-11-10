@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import Header from '../../Components/Header'
 import './Login.css';
 
 function Login() {
@@ -29,11 +30,7 @@ function Login() {
 
     return(
         <div className="page">
-            <div className="cabecalho">
-                <div className="titulo">
-                    <p>Bem-vindo(a) ao e-commerce que mais satisfaz clientes!</p>
-                </div>
-            </div>
+            <Header />
             <div className="geral">
                 <div className="container">
                         <h1><b>Entrar</b></h1>

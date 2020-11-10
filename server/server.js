@@ -22,10 +22,10 @@ app.use(session({
     genid: () => {
       return uuid() // use UUIDs for session IDs
     },
-    store: new FileStore(),
+    store: new FileStore({logFn: () => {}}),
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: false,
         maxAge: (60 * 60 * 24 * 30) //30 days :)
@@ -56,8 +56,14 @@ app.get('/', (req, res) => {
     res.send(`Ecommerce backend server!\n`)
 });
 
-app.get('/auth', (req, res) => {
-    console.log(`User authenticated? ${req.isAuthenticated()}`);
+app.get('/user', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.send({
+            logged: true,
+            body : req.user
+        })
+    }
+    else {res.send({logged: false})}
 });
 
 app.post('/login', (req, res, next) => {
@@ -77,6 +83,11 @@ app.post('/login', (req, res, next) => {
 app.post('/register', (req, res) => {
     db.registerUser(req.body);
     res.send('User registered!');
+});
+
+app.post('/sell', (req, res) => {
+    db.registerProduct(req.body);
+    res.send('Product registered!');
 });
 
 app.listen(port, () => {
