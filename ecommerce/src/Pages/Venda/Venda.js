@@ -53,6 +53,7 @@ function Venda() {
         <div>
             <Header user={user}/>
             <div id='form-wrapper'>
+                <div id="divPai">
                 <Form className='product-form'>
                     <Form.Group controlId="product-name">
                         <Form.Label>Nome do produto</Form.Label>
@@ -67,8 +68,10 @@ function Venda() {
                         </Col>
                         <Col>
                             <Form.Group>
-                                <Form.Label>Quantidade em estoque</Form.Label>
+
+                                <Form.Label>Quantidade</Form.Label>
                                 <Form.Control as="select" onChange={(e)=>{setQuantidade(e.target.value); console.log(quantidade)}}>
+
                                     {selectOptions()}
                                 </Form.Control>
                             </Form.Group>
@@ -93,6 +96,7 @@ function Venda() {
                         Anunciar
                     </Button>
                 </Form>
+                </div>
             </div>
         </div> 
     )
