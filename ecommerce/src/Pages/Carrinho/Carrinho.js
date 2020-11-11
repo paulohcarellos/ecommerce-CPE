@@ -11,8 +11,14 @@ function Carrinho() {
     const [user, setUser] = useState(null);
     const history = useHistory();
 
-    useEffect(async () => {
-        getUser().then(user => setUser(user))
+    useEffect(() => {
+        const fetchUser = async () => {
+            getUser()
+            .then(user => setUser(user))
+            .catch((err) => (console.log(err)));
+        }
+        
+        fetchUser();
     }, [])
 
     function Compra(){

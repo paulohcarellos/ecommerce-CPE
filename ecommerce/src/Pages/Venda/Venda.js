@@ -3,6 +3,7 @@ import {Form, Button, Col} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import Header from '../../Components/Header'
 import {getUser} from '../../Components/tools'
+import {v4 as uuid} from 'uuid'
 import './Venda.css';
 
 function Venda() {
@@ -16,22 +17,34 @@ function Venda() {
     const [imagem, setImagem] = useState('');
     const history = useHistory();
 
-    useEffect(async () => {
-        getUser().then(user => setUser(user))
+    useEffect(() => {
+        const fetchUser = async () => {
+            getUser()
+            .then(user => setUser(user))
+            .catch((err) => (console.log(err)));
+        }
+        
+        fetchUser();
     }, [])
 
     function selectOptions() {
         let options = []
 
         for (let i = 1; i < 100; i++)
-            options.push(<option className="select-quantity">{i}</option>);
+            options.push(<option key={i}>{i}</option>);
 
         return options
     }
 
     function register() {
 
-        fetch('http://localhost:3030/sell', {
+        console.log('sending')
+
+        const imageHash = uuid();
+        const formData = new FormData();
+        formData.append(imageHash, imagem);
+
+        fetch('http://localhost:3030/announce', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
@@ -41,19 +54,23 @@ function Venda() {
                 quantity: quantidade,
                 description: descricao,
                 category: categoria,
-                image: imagem,
+                image: imageHash,
                 created_at: Date.now()
-                })
             })
-        .then(alert('sent'))
-        .catch((error) => console.log(error));
+        })
+
+        fetch('http://localhost:3030/announce/upload', {
+            method: 'POST',
+            body: formData
+        })
+
     }
 
     return (
         <div>
             <Header user={user}/>
             <div id='form-wrapper'>
-                <Form className='product-form'>
+                <Form className='product-form' onSubmit={register}>
                     <Form.Group controlId="product-name">
                         <Form.Label>Nome do produto</Form.Label>
                         <Form.Control type="text" placeholder="Insira nome" onChange={(e)=>{setNome(e.target.value)}}/>
@@ -68,7 +85,7 @@ function Venda() {
                         <Col>
                             <Form.Group>
                                 <Form.Label>Quantidade em estoque</Form.Label>
-                                <Form.Control as="select" onChange={(e)=>{setQuantidade(e.target.value); console.log(quantidade)}}>
+                                <Form.Control as="select" onChange={(e)=>{setQuantidade(e.target.value)}}>
                                     {selectOptions()}
                                 </Form.Control>
                             </Form.Group>
@@ -76,7 +93,7 @@ function Venda() {
                     </Form.Row>
                     <Form.Group>
                         <Form.Label>Categoria</Form.Label>
-                        <Form.Control as="select" onChange={(e)=>{setCategoria(e.target.value); console.log(categoria)}}>
+                        <Form.Control as="select" onChange={(e)=>{setCategoria(e.target.value)}}>
                             <option>Tecnologia</option>
                             <option>Casa e eletrodomésticos</option>
                             <option>Esporte e Lazer</option>
@@ -88,8 +105,11 @@ function Venda() {
                         <Form.Control as="textarea" rows={3} onChange={(e)=>{setDescricao(e.target.value)}}> 
                         </Form.Control>
                     </Form.Group>
-                    <Form.File label="Imagem" />
-                    <Button className="form-submit" variant="primary" type="submit" onClick={register}>
+                    <Form.File custom>
+                        <Form.File.Input id="upload-image" onChange={e => {setImagem(e.target.files[0])}} />
+                        <Form.File.Label data-browse="Pesquisar...">Imagem</Form.File.Label>     
+                    </Form.File>
+                    <Button className="form-submit" variant="primary" type="submit">
                         Anunciar
                     </Button>
                 </Form>
