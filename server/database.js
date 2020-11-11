@@ -20,6 +20,19 @@ async function get(id) {
     });
 }
 
+async function getProducts() {
+
+    return new Promise(resolve => { 
+        database.all('SELECT * FROM products', (error, match) => {
+            
+            if (error) {return console.log(error);}
+            
+            if (match) {resolve(match)}
+            else {resolve(false)}
+        });
+    });
+}
+
 async function registerUser(body) {
     
     body.password = await bcrypt.hash(body.password, 10);   
@@ -32,8 +45,13 @@ async function registerUser(body) {
 }
 
 async function registerProduct(body) {
-    console.log(body);
+
     values = Object.values(body);
+
+    for (let i = 0; i < values.length; i++){
+        if (values[i] == '')
+            values[i] = null;
+    }
 
     database.run(`INSERT INTO products(name, vendor_id, price, quantity, description, category, image, created_at)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
@@ -64,6 +82,7 @@ async function login(email, password) {
 
 module.exports = {
     get,
+    getProducts,
     registerUser,
     registerProduct,
     login

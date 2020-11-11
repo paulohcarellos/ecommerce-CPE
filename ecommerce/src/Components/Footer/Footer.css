@@ -1,0 +1,51 @@
+#footerInteiro{
+    display: flex;
+    flex-direction: column;
+    background-color: #ABC4FF;
+    font-size: 1.2em;
+}
+
+#footerUp{
+    margin-top: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+#descriçao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#linksCPE{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 2.5%;
+    margin-right: 15px;
+}
+
+#linksDevs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2.5%;
+    margin-right: 5%;
+}
+
+#footerDown{
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    background-color: #1b19380e;
+}
