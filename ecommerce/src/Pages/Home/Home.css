@@ -87,12 +87,13 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
-    min-height: 200px;
+    min-height: 240px;
     width: 100%;
     min-width: 120px;
     background-color: white;
     margin: 5px;
     border-radius: 10px;
+    box-shadow: 2px 2px 2px #6f6f70a6;
     font-size: 0.7em;
 }
 

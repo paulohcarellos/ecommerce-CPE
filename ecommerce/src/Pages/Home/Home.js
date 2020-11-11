@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { FormControl }from 'react-bootstrap'
 import "./Home.css"
 import Carousel from "react-elastic-carousel";
-import Item from "./Item";
 import {fotos} from "./Fotos"
 import Header from '../../Components/Header'
 import {getUser, getProducts} from '../../Components/tools'
+import Footer from '../../Components/Footer/Footer'
 
 function Home() {
 
@@ -44,22 +44,26 @@ function Home() {
                 <source src="BFvideo.mp4" type="video/mp4"></source>
             </video>
             <div className="produtos1">
-                <h2><b>Os mais vendidos:</b></h2>
+                <h2 className="ml-3"><b>Os mais vendidos:</b></h2>
                 <div className="Carousel">
                     <Carousel breakPoints={breakPoints}>
                         {fotos.map( (foto) => {
                             return(
-                            <Item id="item">
+                            <div id="item">
                                 <h3>{foto.nome}</h3>
                                 <img id="img" alt={foto.descricao} src={foto.url}></img>
                                 <h5>{foto.descricao}</h5>
                                 <h4>{foto.preco}</h4>
-                            </Item> 
+                            </div> 
                             )
                         })}
                     </Carousel>
                 </div>
             </div>
+            <div>
+                <h1>sei lá</h1>
+            </div>
+            <Footer />
         </div>
     );
 }

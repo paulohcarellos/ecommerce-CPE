@@ -40,7 +40,9 @@ function Header(props) {
 
     return (
         <Navbar id="navbar" expand="lg">
-            <Navbar.Brand href="/home">LOGO</Navbar.Brand>
+            <Navbar.Brand href="/home">
+                <img src="LogoEstendida2.png" alt="Logo"></img>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav id="nav1">
@@ -68,7 +70,7 @@ function Header(props) {
                             </Dropdown.Menu>
                         </Dropdown>
                         <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
-                        <Link to="/venda" className="ml-1 mr-2">Venda aqui!</Link>
+                        <a href="/venda" className="ml-1 mr-2">Venda aqui!</a>
                     </div>
                 </Nav>
                 <Nav id="nav2">
@@ -76,7 +78,7 @@ function Header(props) {
                         <VscAccount id="fotoPerfil" className="ml-2 mr-2"/>
                         {headerUser}
                     </Navbar.Brand>
-                    <Navbar.Brand href="#carrinho">
+                    <Navbar.Brand href="/carrinho">
                         <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                         Carrinho
                     </Navbar.Brand>
