@@ -70,7 +70,8 @@ function Venda() {
         <div>
             <Header user={user}/>
             <div id='form-wrapper'>
-                <Form className='product-form' onSubmit={register}>
+                <div id="divPai">
+                <Form className='product-form'>
                     <Form.Group controlId="product-name">
                         <Form.Label>Nome do produto</Form.Label>
                         <Form.Control type="text" placeholder="Insira nome" onChange={(e)=>{setNome(e.target.value)}}/>
@@ -113,6 +114,7 @@ function Venda() {
                         Anunciar
                     </Button>
                 </Form>
+                </div>
             </div>
         </div> 
     )
