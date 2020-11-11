@@ -1,17 +1,23 @@
 const express = require('express');
-const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
-const uuid = require('uuid/v4')
+const path = require('path');
+const fs = require('fs');
+const cors = require('cors');
+const uuid = require('uuid/v4');
 const FileStore = require('session-file-store')(session);
 const LocalStrategy = require('passport-local').Strategy;
 
-const db = require('./database')
+const db = require('./database');
+const files = require('./files');
+
 
 const app = express()
 const port = 3030
 
 app.use(express.json());
+app.set("views", path.join(__dirname,"views"));
+app.set("view engine", "ejs");
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -28,7 +34,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: false,
-        maxAge: (60 * 60 * 24 * 30) //30 days :)
+        maxAge: (60 * 60 * 60 * 24 * 30) //30 days :)
     }
 }))
 
@@ -66,6 +72,11 @@ app.get('/user', (req, res) => {
     else {res.send({logged: false})}
 });
 
+app.get('/products', (req, res) => {
+    db.getProducts()
+    .then(products => res.send(products));
+});
+
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) {console.log(err);}
@@ -81,13 +92,27 @@ app.post('/login', (req, res, next) => {
 });
 
 app.post('/register', (req, res) => {
-    db.registerUser(req.body);
-    res.send('User registered!');
+    db.registerUser(req.body).then(() => {
+        console.log('User registered!')
+        res.send('User registered!');
+    });
 });
 
-app.post('/sell', (req, res) => {
-    db.registerProduct(req.body);
-    res.send('Product registered!');
+app.post('/announce', (req, res) => {
+    db.registerProduct(req.body).then(() => {
+        console.log('Product registered!');
+        res.send('Product registered!');
+    });
+});
+
+app.post('/announce/upload', (req, res) => {
+    files.upload(req, res, (err) => {
+        if (err) {console.log(err)}
+        else {
+            console.log('File successfully uploaded!')
+            res.send('Image uploaded!');
+        }
+    });
 });
 
 app.listen(port, () => {
