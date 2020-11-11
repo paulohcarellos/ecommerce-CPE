@@ -4,6 +4,7 @@ import "./Home.css"
 import Carousel from "react-elastic-carousel";
 import {fotos} from "./Fotos"
 import Header from '../../Components/Header'
+import Footer from '../../Components/Footer/Footer'
 import {getUser} from '../../Components/tools'
 
 function Home() {
@@ -92,7 +93,7 @@ function Home() {
             <div>
                 <h1>sei lá</h1>
             </div>
-
+            <Footer />
         </div>
         
     );
