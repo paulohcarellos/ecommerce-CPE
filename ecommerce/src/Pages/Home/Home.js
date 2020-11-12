@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { FormControl }from 'react-bootstrap'
 import "./Home.css"
 import Carousel from "react-elastic-carousel";
 import {fotos} from "./Fotos"
@@ -10,7 +9,7 @@ import Footer from '../../Components/Footer/Footer'
 function Home() {
 
     const [user, setUser] = useState(null);
-    const [icones, setIcones] = useState({});
+    const [icones, setIcones] = useState([]);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -47,13 +46,13 @@ function Home() {
                 <h2 className="ml-3"><b>Os mais vendidos:</b></h2>
                 <div className="Carousel">
                     <Carousel breakPoints={breakPoints}>
-                        {fotos.map( (foto) => {
+                        {icones.map( (icone) => {
                             return(
                             <div id="item">
-                                <h3>{foto.nome}</h3>
-                                <img id="img" alt={foto.descricao} src={foto.url}></img>
-                                <h5>{foto.descricao}</h5>
-                                <h4>{foto.preco}</h4>
+                                <h3>{icone.name}</h3>
+                                <img id="img" src={'http://localhost:3030/products/' + icone.image}></img>
+                                <h5>{icone.description}</h5>
+                                <h4>{'R$' + icone.price}</h4> 
                             </div> 
                             )
                         })}

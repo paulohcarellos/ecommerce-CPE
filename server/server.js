@@ -77,6 +77,12 @@ app.get('/products', (req, res) => {
     .then(products => res.send(products));
 });
 
+app.get('/products/:filename', (req, res) => {
+    console.log(__dirname + '/images/' + req.params.filename)
+
+    res.sendFile(__dirname + '/images/' + req.params.filename + '.jpg')
+});
+
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) {console.log(err);}
