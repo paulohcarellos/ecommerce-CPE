@@ -42,20 +42,11 @@ function Carrinho() {
                                     <img id="img" alt={foto.descricao} src={foto.url3}></img>
                                     <h5>{foto.descricao}</h5>
                                     <h4>{foto.preco}</h4>
-                                    <h4>Vendedor - {foto.vendedor}</h4>
                                     <h4>Estoque - {foto.estoque}</h4>
                                 </div> 
                                 <div id="item1">
-                                    <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant='Success'>
-                                        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">3</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">4</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">5</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">6</Dropdown.Item>
-                                    </DropdownButton>
                                     <Nav id="Botão">
-                                        <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
+                                        <Button variant="outline-info" onClick={()=>history.push("venda")}>Editar Produto</Button>
                                     </Nav>
                                 </div>
                             </div> 
@@ -64,8 +55,7 @@ function Carrinho() {
                 <div id="linha2"/>
                 <div id="Rodape">
                     <div id="entrega">
-                        <h2>Envio para Belo Horizonte-MG</h2>
-                        <h5>12 dias úteis para entrega</h5>
+                        <h2>Envio para as Capitais do sudeste: São Paulo, Rio de Janeiro, Belo Horizonte, Vitória</h2>
                     </div>
                     <Nav id="Comprar">
                         <Button variant="outline-primary" size="lg" onClick={Compra}>Finalizar Pedido</Button>
