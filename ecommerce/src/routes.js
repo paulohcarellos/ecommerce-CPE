@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import Home from './Pages/Home';
 import Carrinho from './Pages/Carrinho';
 import Venda from './Pages/Venda'
+import Vendedor from './Pages/Vendedor'
 import Testing from './Pages/Testing'
 
 function Routes() {
@@ -17,6 +18,7 @@ function Routes() {
                 <Route path="/testing" component={Testing}/>
                 <Route path="/carrinho" component={Carrinho}/>
                 <Route path="/venda" component={Venda}/>
+                <Route path="/vendedor" component={Vendedor}/>
             </Switch>
         </BrowserRouter>
     );
