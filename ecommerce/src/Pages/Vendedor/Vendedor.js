@@ -2,26 +2,19 @@ import React, {useState, useEffect} from 'react';
 import { Nav, Button, Dropdown, DropdownButton} from 'react-bootstrap'
 import { FaShoppingCart } from "react-icons/fa";
 import {useHistory} from 'react-router-dom';
-import Item from "./Item";
 import {fotos} from "./Fotos";
 import Carousel from "react-elastic-carousel";
 import Header from '../../Components/Header'
 import {getUser} from '../../Components/tools'
-import "./Carrinho.css"
+import "./Vendedor.css"
 
 function Carrinho() {
 
     const [user, setUser] = useState(null);
     const history = useHistory();
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            getUser()
-            .then(user => setUser(user))
-            .catch((err) => (console.log(err)));
-        }
-        
-        fetchUser();
+    useEffect(async () => {
+        getUser().then(user => setUser(user))
     }, [])
 
     function Compra(){
@@ -30,42 +23,41 @@ function Carrinho() {
     }
 
     return(
-        <div id="paginaCarrinho">
+        <div id="paginaVendedor">
             <Header user={user}/>
-            <div id="bodyCarrinho">
+            <div id="bodyVendedor">
                 <Nav id="nav3">
                     <Nav id="Inicio">
-                        <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
+                        <FaShoppingCart id="fotoPerfil" className="ml-2 mr-2"/>
                     </Nav>
                 </Nav>
                 <div id="linha1"/>
                     {fotos.map( (foto) => {
                         return(
-                            <div id="componentes">
+                            <div id="componentes-vendedor">
                                 <div id="atributos">
                                     <h3>{foto.nome}</h3>
                                     <img id="img" alt={foto.descricao} src={foto.url}></img>
                                     <h5>{foto.descricao}</h5>
                                     <h4>{foto.preco}</h4>
-                                    <h4>Vendedor - {foto.vendedor}</h4>
                                     <h4>Estoque - {foto.estoque}</h4>
                                 </div> 
-                                <div id="item1">
-                                    <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant='Success'>
-                                        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">3</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">4</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">5</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">6</Dropdown.Item>
-                                    </DropdownButton>
-                                    <Nav id="Botão">
-                                        <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
-                                    </Nav>
-                                </div>
                             </div> 
                         )
                     })}
+                    <div id="item1">
+                        <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant='Success'>
+                            <Dropdown.Item href="#/action-1">1</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">2</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">3</Dropdown.Item>
+                            <Dropdown.Item href="#/action-1">4</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">5</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">6</Dropdown.Item>
+                        </DropdownButton>
+                        <Nav id="Botão">
+                            <Button variant="outline-info" onClick={()=>history.push("home")}>Remover Item</Button>
+                        </Nav>
+                    </div>
                 <div id="linha2"/>
                 <div id="Rodape">
                     <div id="entrega">
