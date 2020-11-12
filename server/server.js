@@ -2,7 +2,6 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
-const fs = require('fs');
 const cors = require('cors');
 const uuid = require('uuid/v4');
 const FileStore = require('session-file-store')(session);
@@ -10,7 +9,6 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const db = require('./database');
 const files = require('./files');
-
 
 const app = express()
 const port = 3030
@@ -54,7 +52,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    db.get(id)
+    db.getUser(id)
     .then(response => {done(null, response)});
 });
 
@@ -72,16 +70,39 @@ app.get('/user', (req, res) => {
     else {res.send({logged: false})}
 });
 
-app.get('/products', (req, res) => {
-    db.getProducts()
+app.get('/product', (req, res) => {
+    db.getProduct()
     .then(products => res.send(products));
 });
 
-app.get('/products/:filename', (req, res) => {
-    console.log(__dirname + '/images/' + req.params.filename)
-
+app.get('/product/:filename', (req, res) => {
     res.sendFile(__dirname + '/images/' + req.params.filename + '.jpg')
 });
+
+app.get('/products/all', (req, res) => {
+    db.getProductsAll()
+    .then(products => res.send(products));
+});
+
+app.get('/products/vendor/:id', (req, res) => {
+    db.getProductsVendor(req.params.id)
+    .then(products => res.send(products));
+});
+
+app.get('/products/category/:category', (req, res) => {
+    db.getProductsCat(req.params.category)
+    .then(products => res.send(products));
+});
+
+app.get('/cart', (req, res) => {
+    db.getCart(req.user.id)
+    .then(cart => res.send(cart));
+});
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+})
 
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
@@ -120,6 +141,20 @@ app.post('/announce/upload', (req, res) => {
         }
     });
 });
+
+app.post('/cart/add', (req, res) => {
+    db.addCart(req.body).then(() => {
+        console.log('Item added to cart!')
+        res.send('Item added to cart!');
+    });
+})
+
+app.post('/cart/remove', (req, res) => {
+    db.addCart(req.body).then(() => {
+        console.log('Item removed from cart!')
+        res.send('Item removed from cart!');
+    });
+})
 
 app.listen(port, () => {
     console.log(`Ecommerce server listening at http://localhost:${port}`)

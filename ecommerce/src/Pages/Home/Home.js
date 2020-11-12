@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import "./Home.css"
 import Carousel from "react-elastic-carousel";
-import {fotos} from "./Fotos"
 import Header from '../../Components/Header'
-import {getUser, getProducts} from '../../Components/tools'
+import { getUser, getProductsAll } from '../../Components/tools'
 import Footer from '../../Components/Footer/Footer'
+import "./Home.css"
 
 function Home() {
 
@@ -19,7 +18,7 @@ function Home() {
         }
 
         const fetchProducts = async () => {
-            getProducts()
+            getProductsAll()
             .then(products => setIcones(products))
             .catch((err) => (console.log(err)));
         }
@@ -46,11 +45,11 @@ function Home() {
                 <h2 className="ml-3"><b>Os mais vendidos:</b></h2>
                 <div className="Carousel">
                     <Carousel breakPoints={breakPoints}>
-                        {icones.map( (icone) => {
+                        {icones !== undefined && icones.map( (icone) => {
                             return(
                             <div id="item">
                                 <h3>{icone.name}</h3>
-                                <img id="img" src={'http://localhost:3030/products/' + icone.image}></img>
+                                <img id="img" src={'http://localhost:3030/product/' + icone.image}></img>
                                 <h5>{icone.description}</h5>
                                 <h4>{'R$' + icone.price}</h4> 
                             </div> 
