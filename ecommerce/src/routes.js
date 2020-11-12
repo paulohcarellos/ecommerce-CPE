@@ -20,7 +20,7 @@ function Routes() {
                 <Route path="/carrinho" component={Carrinho}/>
                 <Route path="/venda" component={Venda}/>
                 <Route path="/vendedor" component={Vendedor}/>
-                <Route path="/produto" component={Produto}/>
+                <Route path="/produto/:id" component={Produto}/>
             </Switch>
         </BrowserRouter>
     );

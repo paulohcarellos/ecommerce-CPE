@@ -1,10 +1,12 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header";
 import "./Produto.css"
 
-function Produto(){
+function Produto() {
+    console.log(this.props.match.params.id)
+
     return(
         <div id="divProduto">
             <Header />
