@@ -50,6 +50,13 @@ function Vendedor() {
                         {products !== undefined && products.map( (item) => {
                                 return(
                                     <div id="componentes">
+					                    {/*<div id="informacao">
+                                    		<h4>Nome: {foto.nomev}</h4>
+                                    		<h4>Sobrenome: {foto.sobrenome}</h4>
+                                    		<h4>Email: {foto.email}</h4>
+                                    		<h4>Cidade: {foto.cidade}</h4>
+                                    		<h4>Telefone: {foto.telefone}</h4>
+                                        </div>*/}
                                         <div id="atributos">
                                             <h3>{item.name}</h3>
                                             <img id="img" src={'http://localhost:3030/product/' + item.image}></img>

@@ -4,14 +4,24 @@ export const fotos = [
         url: "/imagens/PlayStation5.jpg",
         descricao: "Console",
         preco: "R$4000,00",
-        estoque: 2
+        estoque: 2,
+        nomev: "João",
+        sobrenome: "Claudio",
+        email: "jc@gmail.com",
+        cidade: "Belo Horizonte",
+        telefone: "9999998888"
     },
     {
         nome: "Air Friyer",
         url: "/imagens/FritadeiraElétrica.jpg",
         descricao: "Fritadeira Elétrica",
         preco: "R$ 250,00",
-        estoque: 7
+        estoque: 7,
+        nomev: "João",
+        sobrenome: "Claudio",
+        email: "jc@gmail.com",
+        cidade: "Belo Horizonte",
+        telefone: "9999998888"
     },
     {
         nome: "Smart Tv",
@@ -19,7 +29,12 @@ export const fotos = [
         descricao: "Smart TV Samsung",
         preco: "R$3000,00",
         vendedor: "João",
-        estoque: 4
+        estoque: 4,
+        nomev: "João",
+        sobrenome: "Claudio",
+        email: "jc@gmail.com",
+        cidade: "Belo Horizonte",
+        telefone: "9999998888"
     },
     {
         nome: "Moletom de otaku",
@@ -27,7 +42,12 @@ export const fotos = [
         descricao: "Manto da Akatsuki",
         preco: "R$ sua alma",
         vendedor: "Breno",
-        estoque: 1
+        estoque: 1,
+        nomev: "João",
+        sobrenome: "Claudio",
+        email: "jc@gmail.com",
+        cidade: "Belo Horizonte",
+        telefone: "9999998888"
     },
     {
         nome: "Nintendo Switch",
@@ -35,6 +55,11 @@ export const fotos = [
         descricao: "Console",
         preco: "R$ 2600,00",
         vendedor: "José",
-        estoque: 12
+        estoque: 12,
+        nomev: "João",
+        sobrenome: "Claudio",
+        email: "jc@gmail.com",
+        cidade: "Belo Horizonte",
+        telefone: "9999998888"
     },
 ]

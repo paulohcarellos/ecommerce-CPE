@@ -1,0 +1,38 @@
+#componentesv{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+    flex-wrap: wrap;
+}
+
+#informacao{
+    background-color: white;
+    border: 1px solid black;
+    margin-right: 10%;
+    width: 270px;
+
+}
+
+#atributosv{
+    align-items: center;
+    background-color: white;
+    text-align: center;
+    border: 1px solid black;
+    width: 250px;
+    margin-left: 6%;
+}
+
+#item1v{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+}
+
+#Botãov{
+    margin-left: 170px;
+}
