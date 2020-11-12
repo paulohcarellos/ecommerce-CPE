@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import { Nav, Button, Dropdown, DropdownButton} from 'react-bootstrap'
+import { Nav, Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import { FaShoppingCart } from "react-icons/fa";
-import {useHistory} from 'react-router-dom';
-import Item from "./Item";
-import {fotos} from "./Fotos";
-import Carousel from "react-elastic-carousel";
+import { useHistory } from 'react-router-dom';
+import { fotos } from "./Fotos";
+import { getUser, getCart } from '../../Components/tools'
 import Header from '../../Components/Header'
-import {getUser} from '../../Components/tools'
 import "./Carrinho.css"
 
 function Carrinho() {
 
     const [user, setUser] = useState(null);
+    const [cart, setCart] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
@@ -20,8 +19,15 @@ function Carrinho() {
             .then(user => setUser(user))
             .catch((err) => (console.log(err)));
         }
+
+        const fetchCart = async () => {
+            getCart()
+            .then(cart => setCart(cart))
+            .catch((err) => (console.log(err)));
+        }
         
         fetchUser();
+        fetchCart();
     }, [])
 
     function Compra(){

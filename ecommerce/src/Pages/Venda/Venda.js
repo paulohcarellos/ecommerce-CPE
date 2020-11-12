@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {Form, Button, Col} from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { getUser } from '../../Components/tools'
+import { v4 as uuid } from 'uuid'
 import Header from '../../Components/Header'
-import {getUser} from '../../Components/tools'
-import {v4 as uuid} from 'uuid'
 import './Venda.css';
 
 function Venda() {
@@ -38,8 +38,6 @@ function Venda() {
 
     function register() {
 
-        console.log('sending')
-
         const imageHash = uuid();
         const formData = new FormData();
         formData.append(imageHash, imagem);
@@ -63,7 +61,6 @@ function Venda() {
             method: 'POST',
             body: formData
         })
-
     }
 
     return (
@@ -71,49 +68,49 @@ function Venda() {
             <Header user={user}/>
             <div id='form-wrapper'>
                 <div id="divPai">
-                <Form className='product-form'>
-                    <Form.Group controlId="product-name">
-                        <Form.Label>Nome do produto</Form.Label>
-                        <Form.Control type="text" placeholder="Insira nome" onChange={(e)=>{setNome(e.target.value)}}/>
-                    </Form.Group>
-                    <Form.Row>
-                        <Col>
-                            <Form.Group>
-                                <Form.Label>Preço</Form.Label>
-                                <Form.Control type="price" placeholder="Insira preço" onChange={(e)=>{setPreco(e.target.value)}}/>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group>
-                                <Form.Label>Quantidade em estoque</Form.Label>
-                                <Form.Control as="select" onChange={(e)=>{setQuantidade(e.target.value)}}>
-                                    {selectOptions()}
-                                </Form.Control>
-                            </Form.Group>
-                        </Col>
-                    </Form.Row>
-                    <Form.Group>
-                        <Form.Label>Categoria</Form.Label>
-                        <Form.Control as="select" onChange={(e)=>{setCategoria(e.target.value)}}>
-                            <option>Tecnologia</option>
-                            <option>Casa e eletrodomésticos</option>
-                            <option>Esporte e Lazer</option>
-                            <option>Moda e Beleza</option>
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Descrição</Form.Label>
-                        <Form.Control as="textarea" rows={3} onChange={(e)=>{setDescricao(e.target.value)}}> 
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.File custom>
-                        <Form.File.Input id="upload-image" onChange={e => {setImagem(e.target.files[0])}} />
-                        <Form.File.Label data-browse="Pesquisar...">Imagem</Form.File.Label>     
-                    </Form.File>
-                    <Button className="form-submit" variant="primary" type="submit">
-                        Anunciar
-                    </Button>
-                </Form>
+                    <Form className='product-form' onSubmit={register}>
+                        <Form.Group controlId="product-name">
+                            <Form.Label>Nome do produto</Form.Label>
+                            <Form.Control type="text" placeholder="Insira nome" onChange={(e)=>{setNome(e.target.value)}}/>
+                        </Form.Group>
+                        <Form.Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Preço</Form.Label>
+                                    <Form.Control type="price" placeholder="Insira preço" onChange={(e)=>{setPreco(e.target.value)}}/>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Quantidade em estoque</Form.Label>
+                                    <Form.Control as="select" onChange={(e)=>{setQuantidade(e.target.value)}}>
+                                        {selectOptions()}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Form.Row>
+                        <Form.Group>
+                            <Form.Label>Categoria</Form.Label>
+                            <Form.Control as="select" onChange={(e)=>{setCategoria(e.target.value)}}>
+                                <option>Tecnologia</option>
+                                <option>Casa e eletrodomésticos</option>
+                                <option>Esporte e Lazer</option>
+                                <option>Moda e Beleza</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Descrição</Form.Label>
+                            <Form.Control as="textarea" rows={3} onChange={(e)=>{setDescricao(e.target.value)}}> 
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.File custom>
+                            <Form.File.Input id="upload-image" onChange={e => {setImagem(e.target.files[0])}} />
+                            <Form.File.Label data-browse="Pesquisar...">Imagem</Form.File.Label>     
+                        </Form.File>
+                        <Button className="form-submit" variant="primary" type="submit">
+                            Anunciar
+                        </Button>
+                    </Form>
                 </div>
             </div>
         </div> 

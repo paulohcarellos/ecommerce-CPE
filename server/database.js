@@ -7,7 +7,7 @@ let database = new sqlite3.Database('db.sqlite3', (err) => {
     console.log('Connected to the database!');
 });
 
-async function get(id) {
+async function getUser(id) {
     
     return new Promise(resolve => { 
         database.get(`SELECT * FROM users WHERE id = ?`, id, (error, match) => {
@@ -15,12 +15,25 @@ async function get(id) {
             if (error) {return console.log(error);}
             
             if (match) {resolve(match)}
-            else {resolve(false)}
+            else {resolve(undefined)}
         });
     });
 }
 
-async function getProducts() {
+async function getProduct(id) {
+
+    return new Promise(resolve => { 
+        database.get('SELECT * FROM products WHERE id = ?', id, (error, match) => {
+            
+            if (error) {return console.log(error);}
+            
+            if (match) {resolve(match)}
+            else {resolve(undefined)}
+        });
+    });
+}
+
+async function getProductsAll() {
 
     return new Promise(resolve => { 
         database.all('SELECT * FROM products', (error, match) => {
@@ -28,7 +41,46 @@ async function getProducts() {
             if (error) {return console.log(error);}
             
             if (match) {resolve(match)}
-            else {resolve(false)}
+            else {resolve(undefined)}
+        });
+    });
+}
+
+async function getProductsVendor(id) {
+
+    return new Promise(resolve => { 
+        database.all('SELECT * FROM products WHERE vendor_id = ?', id, (error, match) => {
+            
+            if (error) {return console.log(error);}
+            
+            if (match) {resolve(match)}
+            else {resolve(undefined)}
+        });
+    });
+}
+
+async function getProductsCat(category) {
+
+    return new Promise(resolve => { 
+        database.all('SELECT * FROM products WHERE category = ?', category, (error, match) => {
+            
+            if (error) {return console.log(error);}
+            
+            if (match) {resolve(match)}
+            else {resolve(undefined)}
+        });
+    });
+}
+
+async function getCart(id) {
+
+    return new Promise(resolve => { 
+        database.all('SELECT * FROM cart_item WHERE user_id = ?', id, (error, match) => {
+            
+            if (error) {return console.log(error);}
+            
+            if (match) {resolve(match)}
+            else {resolve(undefined)}
         });
     });
 }
@@ -38,10 +90,17 @@ async function registerUser(body) {
     body.password = await bcrypt.hash(body.password, 10);   
     values = Object.values(body);
 
-    database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
-            if (error) {console.log(error);}
-    });
+    return new Promise(resolve => {
+        database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+                if (error) {
+        
+                    console.log(error);
+                    resolve(false);
+
+                } else {resolve(true);}
+        });
+    })
 }
 
 async function registerProduct(body) {
@@ -57,6 +116,69 @@ async function registerProduct(body) {
         VALUES(?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
             if (error) {console.log(error);}
     });
+}
+
+async function addCart(body) {
+     
+    values = Object.values(body);
+    
+    const stock = await updateStock(body.product_id, (body.quantity * -1));
+
+    if (stock){
+        return new Promise(resolve => { 
+            database.run(`INSERT INTO users(user_id, product_id, price, discount, quantity, created_at)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
+                    if (error) {
+    
+                        console.log(error);
+                        resolve(false);
+    
+                    } else {resolve(true);}
+            });
+        });
+    }
+    
+    return false;
+}
+
+async function removeCart(id) {
+
+    const stock = await updateStock(body.product_id, body.quantity);
+
+    if (stock){
+        return new Promise(resolve => { 
+            database.run('DELETE FROM cart_item WHERE id = ?', id, (error) => {
+                if (error) {
+
+                    console.log(error);
+                    resolve(false);
+
+                } else {resolve(true);}
+            });
+        });
+    }
+
+    return(false)
+}
+
+async function updateStock(id, quantity) {
+
+    inStock = await getProduct(id);
+
+    if (inStock !== undefined) {
+        if (instock.quantity + quantity >= 0) {
+            database.run('UPDATE products SET quantity = ? WHERE id = ?', [instock.quantity + quantity, id], (err) => {
+                if (error) {
+
+                    console.log(error);
+                    resolve(false);
+
+                } else {resolve(true);}
+            })
+        }
+    }
+
+    return false
 }
 
 async function login(email, password) {
@@ -81,9 +203,15 @@ async function login(email, password) {
 }
 
 module.exports = {
-    get,
-    getProducts,
+    getUser,
+    getProduct,
+    getProductsAll,
+    getProductsVendor,
+    getProductsCat,
+    getCart,
     registerUser,
     registerProduct,
+    addCart,
+    removeCart,
     login
 }
