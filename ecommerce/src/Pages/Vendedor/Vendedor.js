@@ -37,8 +37,6 @@ function Carrinho() {
                                 <div id="atributos">
                                     <h3>{foto.nome}</h3>
                                     <img id="img" alt={foto.descricao} src={foto.url}></img>
-                                    <img id="img" alt={foto.descricao} src={foto.url2}></img>
-                                    <img id="img" alt={foto.descricao} src={foto.url3}></img>
                                     <h5>{foto.descricao}</h5>
                                     <h4>{foto.preco}</h4>
                                     <h4>Estoque - {foto.estoque}</h4>
