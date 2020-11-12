@@ -84,13 +84,13 @@ app.get('/products/all', (req, res) => {
     .then(products => res.send(products));
 });
 
-app.get('/products/vendor', (req, res) => {
-    db.getProductsVendor(req.body)
+app.get('/products/vendor/:id', (req, res) => {
+    db.getProductsVendor(req.params.id)
     .then(products => res.send(products));
 });
 
-app.get('/products/category', (req, res) => {
-    db.getProductsCat(req.body)
+app.get('/products/category/:category', (req, res) => {
+    db.getProductsCat(req.params.category)
     .then(products => res.send(products));
 });
 
@@ -98,6 +98,11 @@ app.get('/cart', (req, res) => {
     db.getCart(req.user.id)
     .then(cart => res.send(cart));
 });
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+})
 
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {

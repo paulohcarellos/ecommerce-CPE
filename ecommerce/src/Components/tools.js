@@ -18,6 +18,16 @@ export async function getProductsAll() {
     .catch((error) => console.log(error));
 }
 
+export async function getProductsVendor(id) {
+    return await fetch('http://localhost:3030/products/vendor/' + id, {
+        method: 'GET',
+        credentials: 'include',
+    })
+    .then(response => response.json())
+    .then(products => {return products})
+    .catch((error) => console.log(error));
+}
+
 export async function getCart() {
     return await fetch('http://localhost:3030/cart', {
         method: 'GET',
