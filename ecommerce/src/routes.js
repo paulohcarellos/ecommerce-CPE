@@ -7,6 +7,7 @@ import Carrinho from './Pages/Carrinho';
 import Venda from './Pages/Venda'
 import Vendedor from './Pages/Vendedor'
 import Testing from './Pages/Testing'
+import Produto from './Pages/Produto'
 
 function Routes() {
     return(
@@ -19,6 +20,7 @@ function Routes() {
                 <Route path="/carrinho" component={Carrinho}/>
                 <Route path="/venda" component={Venda}/>
                 <Route path="/vendedor" component={Vendedor}/>
+                <Route path="/produto" component={Produto}/>
             </Switch>
         </BrowserRouter>
     );
