@@ -3,12 +3,11 @@ import { Nav, Button, Dropdown, DropdownButton} from 'react-bootstrap'
 import { FaShoppingCart } from "react-icons/fa";
 import {useHistory} from 'react-router-dom';
 import {fotos} from "./Fotos";
-import Carousel from "react-elastic-carousel";
 import Header from '../../Components/Header'
 import {getUser} from '../../Components/tools'
 import "./Vendedor.css"
 
-function Carrinho() {
+function Vendedor() {
 
     const [user, setUser] = useState(null);
     const history = useHistory();
@@ -25,24 +24,25 @@ function Carrinho() {
         <div id="paginaVendedor">
             <Header user={user}/>
             <div id="bodyVendedor">
-                <Nav id="nav3">
-                    <Nav id="Inicio">
-                        <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
-                    </Nav>
-                </Nav>
-                <div id="linha1"/>
                 {fotos.map( (foto) => {
                         return(
-                            <div id="componentes">
-                                <div id="atributos">
+                            <div id="componentesv">
+                                <div id="informacao">
+                                    <h4>Nome: {foto.nomev}</h4>
+                                    <h4>Sobrenome: {foto.sobrenome}</h4>
+                                    <h4>Email: {foto.email}</h4>
+                                    <h4>Cidade: {foto.cidade}</h4>
+                                    <h4>Telefone: {foto.telefone}</h4>
+                                </div>
+                                <div id="atributosv">
                                     <h3>{foto.nome}</h3>
                                     <img id="img" alt={foto.descricao} src={foto.url}></img>
                                     <h5>{foto.descricao}</h5>
                                     <h4>{foto.preco}</h4>
                                     <h4>Estoque - {foto.estoque}</h4>
                                 </div> 
-                                <div id="item1">
-                                    <Nav id="Botão">
+                                <div id="item1v">
+                                    <Nav id="Botãov">
                                         <Button variant="outline-info" onClick={()=>history.push("venda")}>Editar Produto</Button>
                                     </Nav>
                                 </div>
@@ -65,4 +65,4 @@ function Carrinho() {
         
 }
 
-export default Carrinho;
+export default Vendedor;
