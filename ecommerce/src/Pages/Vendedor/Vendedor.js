@@ -18,8 +18,7 @@ function Carrinho() {
     }, [])
 
     function Compra(){
-        alert("Pedido realizado com sucesso")
-        history.push("home")
+        history.push("venda")
     }
 
     return(
@@ -28,7 +27,7 @@ function Carrinho() {
             <div id="bodyVendedor">
                 <Nav id="nav3">
                     <Nav id="Inicio">
-                        <FaShoppingCart id="fotoPerfil" className="ml-2 mr-2"/>
+                        <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
                     </Nav>
                 </Nav>
                 <div id="linha1"/>
@@ -58,7 +57,7 @@ function Carrinho() {
                         <h2>Envio para as Capitais do sudeste: São Paulo, Rio de Janeiro, Belo Horizonte, Vitória</h2>
                     </div>
                     <Nav id="Comprar">
-                        <Button variant="outline-primary" size="lg" onClick={Compra}>Finalizar Pedido</Button>
+                        <Button variant="outline-primary" size="lg" onClick={Compra}>Cadastrar Novo Produto</Button>
                     </Nav>
                 </div>
             </div>
