@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Cadastro from './Pages/Cadastro';
 import Login from './Pages/Login';
 import Home from './Pages/Home';

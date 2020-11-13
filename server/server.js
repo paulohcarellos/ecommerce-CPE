@@ -70,12 +70,15 @@ app.get('/user', (req, res) => {
     else {res.send({logged: false})}
 });
 
-app.get('/product', (req, res) => {
-    db.getProduct()
-    .then(products => res.send(products));
+app.get('/product/:id', (req, res) => {
+    db.getProduct(req.params.id)
+    .then(product => {
+        if (product === undefined) {res.send('Produto não encontrado');}
+        else {res.send(product);}
+    });
 });
 
-app.get('/product/:filename', (req, res) => {
+app.get('/product/image/:filename', (req, res) => {
     res.sendFile(__dirname + '/images/' + req.params.filename + '.jpg')
 });
 
@@ -119,40 +122,67 @@ app.post('/login', (req, res, next) => {
 });
 
 app.post('/register', (req, res) => {
-    db.registerUser(req.body).then(() => {
-        console.log('User registered!')
-        res.send('User registered!');
+    db.registerUser(req.body).then(result => {
+        if (result === true) {
+            console.log('User registered!')
+            res.send({result: true});
+        }
+        else {
+            console.log(result)
+            res.send({result: false});
+        }
     });
 });
 
 app.post('/announce', (req, res) => {
-    db.registerProduct(req.body).then(() => {
-        console.log('Product registered!');
-        res.send('Product registered!');
+    db.registerProduct(req.body).then(result => {
+        if (result === true) {
+            console.log('Product registered!')
+            res.send({result: true});
+        }
+        else {
+            console.log(result)
+            res.send({result: false});
+        }
     });
 });
 
 app.post('/announce/upload', (req, res) => {
     files.upload(req, res, (err) => {
-        if (err) {console.log(err)}
+        if (err) {
+            console.log(err)
+            res.send({result: false});
+        }
         else {
             console.log('File successfully uploaded!')
-            res.send('Image uploaded!');
+            res.send({result: true});
         }
     });
 });
 
 app.post('/cart/add', (req, res) => {
-    db.addCart(req.body).then(() => {
-        console.log('Item added to cart!')
-        res.send('Item added to cart!');
+    db.addCart(req.body).then(result => {
+        if (result === true) {
+            console.log('Item added to cart!')
+            res.send({result: true});
+        }
+        else {
+            console.log(result)
+            res.send({result: false});
+        }
     });
 })
 
 app.post('/cart/remove', (req, res) => {
-    db.addCart(req.body).then(() => {
-        console.log('Item removed from cart!')
-        res.send('Item removed from cart!');
+    db.removeCart(req.body).then(result => {
+        if (result === true) {
+            console.log('Item removed from cart!')
+            res.send({result: true});
+        }
+        else {
+            console.log(result)
+            res.send({result: false});
+        }
     });
 })
 

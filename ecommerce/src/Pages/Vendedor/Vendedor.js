@@ -29,8 +29,12 @@ function Vendedor() {
             .catch((err) => (console.log(err)));
         }
 
-        if (user !== null)
-            fetchProducts(user.body.id);
+        if (user !== null) {
+            if (!user.logged)
+                history.push('login')
+            else
+                fetchProducts(user.body.id);
+        }
     }, [user]);
 
     function Compra(){
@@ -59,7 +63,7 @@ function Vendedor() {
                                         </div>*/}
                                         <div id="atributos">
                                             <h3>{item.name}</h3>
-                                            <img id="img" src={'http://localhost:3030/product/' + item.image}></img>
+                                            <img id="img" src={'http://localhost:3030/product/image/' + item.image}></img>
                                             <h5>{item.description}</h5>
                                             <h4>R${item.price}</h4>
                                             <h4>Quantidade em estoque: {item.quantity}</h4>
