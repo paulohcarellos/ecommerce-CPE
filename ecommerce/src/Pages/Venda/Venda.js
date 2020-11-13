@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { getUser } from '../../Components/tools'
 import { v4 as uuid } from 'uuid'
 import Header from '../../Components/Header'
+import Footer from '../../Components/Footer/Footer';
 import './Venda.css';
 
 function Venda() {
@@ -113,6 +114,7 @@ function Venda() {
                     </Form>
                 </div>
             </div>
+            <Footer />
         </div> 
     )
 }

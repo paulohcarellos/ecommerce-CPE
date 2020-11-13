@@ -10,15 +10,17 @@ function Produto(){
             <Header />
             <div id="produtoPai">
                 <div id="produtoDisplay">
-                    <div id="nomeDoProduto">Nome do produto</div>
+                    <div id="nomeDoProduto"> 
+                        <h1>Nome do produto</h1>
+                    </div>
                     <div id="descriçaoComImagem">
                         <img id="imagemDoProduto" src="./imagens/Bolsa.png" alt="logo"></img>
                         <div id="desciçaoDoProduto">
-                            TExtinho ddddddddd ddddddddddddddddg gggggggggg gggggs ssssssssssss sssssssals kdlkajsdlkj alksj skjaklsjd lasksdlajs lshl djalksjd lajsdlj alsdjasljdhaslj asldjasljh dsssssssss
+                            TExssssssssssssss s s s s s s
                         </div>
                     </div>
                         <div>
-                            Preço
+                            <h3>Preço</h3>
                         </div>
                         <Button variant="outline-dark">Adicionar ao Carrinho</Button>
                 </div>   

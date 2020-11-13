@@ -9,21 +9,20 @@
     padding: 50px;
 }
 
-.container{
+#containerCadastro{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #e6e6ff;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    height: 100%;
 }
 
-.geral{
-    height: 70%;
+#geralCadastro{
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #e6e6ff;
+    height: 100vh;
 }
 
 .inputs{
@@ -32,13 +31,6 @@
     margin-left: 16px;
     margin-right: 16px;
     border: 1px solid black;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
-}
-
-.rodape{
-    height: 10%;
-    width: 100%;
-    background-color: #e6e6ff;
-    text-align: center;
 }

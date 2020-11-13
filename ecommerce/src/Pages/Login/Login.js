@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header'
 import './Login.css';
 
@@ -50,9 +51,7 @@ function Login() {
                         </Form>
                 </div>
             </div>
-            <div className="rodape">
-                <p>Desenvolvido por CPEJr.</p>
-            </div>
+            <Footer />
         </div>
     );
 }

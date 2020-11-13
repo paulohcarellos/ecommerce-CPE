@@ -37,29 +37,30 @@ function Home() {
     return(
         <div id="paginaHome">
             <Header user={user}/>
-
-            <video autoplay="true" muted loop id="myVideo">
-                <source src="BFvideo.mp4" type="video/mp4"></source>
-            </video>
-            <div className="produtos1">
-                <h2 className="ml-3"><b>Os mais vendidos:</b></h2>
-                <div className="Carousel">
-                    <Carousel breakPoints={breakPoints}>
-                        {icones !== undefined && icones.map( (icone) => {
-                            return(
-                            <div id="item">
-                                <h3>{icone.name}</h3>
-                                <img id="img" src={'http://localhost:3030/product/' + icone.image}></img>
-                                <h5>{icone.description}</h5>
-                                <h4>{'R$' + icone.price}</h4> 
-                            </div> 
-                            )
-                        })}
-                    </Carousel>
+            <div id="homeGeral">
+                <div>
+                    <video autoplay="true" muted loop id="myVideo">
+                        <source src="BFvideo.mp4" type="video/mp4"></source>
+                    </video>
                 </div>
-            </div>
-            <div>
-                <h1>sei lá</h1>
+
+                <div className="produtos1">
+                    <h2 className="ml-3"><b>Todos os produtos:</b></h2>
+                    <div className="Carousel">
+                        <Carousel breakPoints={breakPoints}>
+                            {icones !== undefined && icones.map( (icone) => {
+                                return(
+                                <div id="item">
+                                    <h3>{icone.name}</h3>
+                                    <img id="img" src={'http://localhost:3030/product/' + icone.image}></img>
+                                    <h5>{icone.description}</h5>
+                                    <h4>{'R$' + icone.price}</h4> 
+                                </div> 
+                                )
+                            })}
+                        </Carousel>
+                    </div>
+                </div>
             </div>
             <Footer />
         </div>

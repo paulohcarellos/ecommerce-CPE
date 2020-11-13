@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { fotos } from "./Fotos";
 import { getUser, getCart } from '../../Components/tools'
 import Header from '../../Components/Header'
+import Footer from '../../Components/Footer/Footer'
 import "./Carrinho.css"
 
 function Carrinho() {
@@ -83,6 +84,7 @@ function Carrinho() {
                     </Nav>
                 </div>
             </div>
+            <Footer />
         </div>
         
     );
