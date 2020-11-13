@@ -17,15 +17,18 @@ function Home() {
             .catch((err) => (console.log(err)));
         }
 
+        fetchUser();
+    }, []);
+
+    useEffect(() => {
         const fetchProducts = async () => {
             getProductsAll()
             .then(products => setIcones(products))
             .catch((err) => (console.log(err)));
         }
-
-        fetchUser();
+        
         fetchProducts();
-    }, [])
+    }, []);
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -43,7 +46,6 @@ function Home() {
                         <source src="BFvideo.mp4" type="video/mp4"></source>
                     </video>
                 </div>
-
                 <div className="produtos1">
                     <h2 className="ml-3"><b>Todos os produtos:</b></h2>
                     <div className="Carousel">

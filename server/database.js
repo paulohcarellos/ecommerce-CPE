@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3');
 const bcrypt = require('bcrypt')
 
 let database = new sqlite3.Database('db.sqlite3', (err) => {
-    if (err) {console.error(err.message);}
+    if (err) {console.err(err.message);}
     
     console.log('Connected to the database!');
 });
@@ -10,9 +10,9 @@ let database = new sqlite3.Database('db.sqlite3', (err) => {
 async function getUser(id) {
     
     return new Promise(resolve => { 
-        database.get(`SELECT * FROM users WHERE id = ?`, id, (error, match) => {
+        database.get(`SELECT * FROM users WHERE id = ?`, id, (err, match) => {
             
-            if (error) {return console.log(error);}
+            if (err) {return console.log(err);}
             
             if (match) {resolve(match)}
             else {resolve(undefined)}
@@ -23,9 +23,9 @@ async function getUser(id) {
 async function getProduct(id) {
 
     return new Promise(resolve => { 
-        database.get('SELECT * FROM products WHERE id = ?', id, (error, match) => {
+        database.get('SELECT * FROM products WHERE id = ?', id, (err, match) => {
             
-            if (error) {return console.log(error);}
+            if (err) {return console.log(err);}
             
             if (match) {resolve(match)}
             else {resolve(undefined)}
@@ -36,9 +36,9 @@ async function getProduct(id) {
 async function getProductsAll() {
 
     return new Promise(resolve => { 
-        database.all('SELECT * FROM products', (error, match) => {
+        database.all('SELECT * FROM products', (err, match) => {
             
-            if (error) {return console.log(error);}
+            if (err) {return console.log(err);}
             
             if (match) {resolve(match)}
             else {resolve(undefined)}
@@ -49,9 +49,9 @@ async function getProductsAll() {
 async function getProductsVendor(id) {
 
     return new Promise(resolve => { 
-        database.all('SELECT * FROM products WHERE vendor_id = ?', id, (error, match) => {
+        database.all('SELECT * FROM products WHERE vendor_id = ?', id, (err, match) => {
             
-            if (error) {return console.log(error);}
+            if (err) {return console.log(err);}
             
             if (match) {resolve(match)}
             else {resolve(undefined)}
@@ -62,9 +62,9 @@ async function getProductsVendor(id) {
 async function getProductsCat(category) {
 
     return new Promise(resolve => { 
-        database.all('SELECT * FROM products WHERE category = ?', category, (error, match) => {
+        database.all('SELECT * FROM products WHERE category = ?', category, (err, match) => {
             
-            if (error) {return console.log(error);}
+            if (err) {return console.log(err);}
             
             if (match) {resolve(match)}
             else {resolve(undefined)}
@@ -75,9 +75,9 @@ async function getProductsCat(category) {
 async function getCart(id) {
 
     return new Promise(resolve => { 
-        database.all('SELECT * FROM cart_item WHERE user_id = ?', id, (error, match) => {
+        database.all('SELECT * FROM cart_item WHERE user_id = ?', id, (err, match) => {
             
-            if (error) {return console.log(error);}
+            if (err) {return console.log(err);}
             
             if (match) {resolve(match)}
             else {resolve(undefined)}
@@ -92,10 +92,10 @@ async function registerUser(body) {
 
     return new Promise(resolve => {
         database.run(`INSERT INTO users(first_name, last_name, email, password, state, city, address, phone, cpf, birthdate, created_at)
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
-                if (error) {
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (err) => {
+                if (err) {
         
-                    console.log(error);
+                    console.log(err);
                     resolve(false);
 
                 } else {resolve(true);}
@@ -113,79 +113,79 @@ async function registerProduct(body) {
     }
 
     database.run(`INSERT INTO products(name, vendor_id, price, quantity, description, category, image, created_at)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
-            if (error) {console.log(error);}
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)`, values, (err) => {
+            if (err) {
+                console.log(err);
+                return 'Database error'
+            }
+            else {return true;}
     });
 }
 
 async function addCart(body) {
      
     values = Object.values(body);
-    
-    const stock = await updateStock(body.product_id, (body.quantity * -1));
+    const stock = await updateStock(body.product_id, -body.quantity).catch(err => console.log(err));
 
-    if (stock){
+    if (stock === true){
         return new Promise(resolve => { 
-            database.run(`INSERT INTO users(user_id, product_id, price, discount, quantity, created_at)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values, (error) => {
-                    if (error) {
-    
-                        console.log(error);
-                        resolve(false);
-    
+            database.run(`INSERT INTO cart_item(user_id, product_id, price, discount, quantity, created_at)
+                VALUES(?, ?, ?, ?, ?, ?)`, values, (err) => {
+                    if (err) {
+                        console.log(err);
+                        updateStock(body.product_id, body.quantity).catch(err => console.log(err));
+                        resolve('Database error');
+                    
                     } else {resolve(true);}
             });
         });
     }
     
-    return false;
+    return stock;
 }
 
-async function removeCart(id) {
+async function removeCart(body) {
+    console.log(body)
+    updateStock(body.product_id, body.quantity).catch(err => console.log(err));
 
-    const stock = await updateStock(body.product_id, body.quantity);
+    return new Promise(resolve => { 
+        database.run('DELETE FROM cart_item WHERE id = ?', body.id, (err) => {
+            if (err) {
+                console.log(err);
+                updateStock(body.product_id, -body.quantity).catch(err => console.log(err));
+                resolve('Database error');
 
-    if (stock){
-        return new Promise(resolve => { 
-            database.run('DELETE FROM cart_item WHERE id = ?', id, (error) => {
-                if (error) {
-
-                    console.log(error);
-                    resolve(false);
-
-                } else {resolve(true);}
-            });
+            } else {resolve(true);}
         });
-    }
-
-    return(false)
+    });
 }
 
 async function updateStock(id, quantity) {
 
-    inStock = await getProduct(id);
+    const inStock = await getProduct(id).catch(err => console.log(err));
 
     if (inStock !== undefined) {
-        if (instock.quantity + quantity >= 0) {
-            database.run('UPDATE products SET quantity = ? WHERE id = ?', [instock.quantity + quantity, id], (err) => {
-                if (error) {
+        if (inStock.quantity + quantity >= 0) {
+            database.run('UPDATE products SET quantity = ? WHERE id = ?', [inStock.quantity + quantity, id], (err) => {
+                if (err) {
+                    console.log(err);
+                    return 'Database error';
+                }
+            });
 
-                    console.log(error);
-                    resolve(false);
-
-                } else {resolve(true);}
-            })
+            return true;
         }
+        return 'Out of stock'
     }
 
-    return false
+    return 'Product not found';
 }
 
 async function login(email, password) {
 
     return new Promise(resolve => { 
-        database.get(`SELECT * FROM users WHERE email = ?`, email, (error, match) => {
-            if (error) {return console.log(error);}
+        database.get(`SELECT * FROM users WHERE email = ?`, email, (err, match) => {
+            if (err) {return console.log(err);}
 
             if (match === undefined) {
                 resolve(undefined)

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Cadastro from './Pages/Cadastro';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
@@ -20,7 +20,7 @@ function Routes() {
                 <Route path="/carrinho" component={Carrinho}/>
                 <Route path="/venda" component={Venda}/>
                 <Route path="/vendedor" component={Vendedor}/>
-                <Route path="/produto" component={Produto}/>
+                <Route path="/produto/:id" component={Produto}/>
             </Switch>
         </BrowserRouter>
     );
