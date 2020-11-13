@@ -2,7 +2,7 @@
     display: block;
     position: relative;
     min-height: 100vh;
-    background-color: #e6e6ff;
+    background-color: white;
 }
 
 .cabecalho {
@@ -10,7 +10,7 @@
     flex-direction: column;
     height: 3cm;
     width: 100%;
-    background-color: #ABC4FF;
+    background-color: white;
     text-align: center;
 }
 
@@ -19,7 +19,7 @@
     align-items: center;
     margin-top: 5%;
     justify-content: center;
-    background-color: #e6e6ff;
+    background-color: white;
     padding-bottom: 10%;
     height: 75vh;
 }
@@ -32,7 +32,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e6e6ff;
+    background-color: white;
     padding-top: 30px;
     padding-bottom: 30px;
 }

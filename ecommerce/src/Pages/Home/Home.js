@@ -54,7 +54,7 @@ function Home() {
                                 return(
                                 <div id="item">
                                     <h3>{icone.name}</h3>
-                                    <img id="img" src={'http://localhost:3030/product/' + icone.image}></img>
+                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                     <h5>{icone.description}</h5>
                                     <h4>{'R$' + icone.price}</h4> 
                                 </div> 

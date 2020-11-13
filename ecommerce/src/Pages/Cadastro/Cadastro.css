@@ -13,11 +13,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e6e6ff;
+    background-color: white;
     height: 100%;
 }
 
-#geralCadastro{
+#geralCadastro {
     height: 100%;
     display: flex;
     align-items: center;

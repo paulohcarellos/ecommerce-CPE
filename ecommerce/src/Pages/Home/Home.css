@@ -31,7 +31,6 @@
 
 #tags{
     display: flex;
-    
 }
 
 #nav2{
@@ -60,18 +59,18 @@
 
 
 .Carousel {
-
     display: flex;
     align-items: center;
     justify-content: center;
  
-  }
+}
   
 .rec-carousel-item:focus {
   outline: none;
   box-shadow: inset 0 0 1px 0px rgb(148, 238, 130);
 
 }
+
 #img{
   margin-top: 2px;
   width: 90%;
@@ -79,7 +78,6 @@
   min-width: 50px;
   height: 35%;
 }
-
 
 #item{
     display: flex;
@@ -109,5 +107,5 @@
 }
 
 #homeGeral{
-    height: 75vh;
+    height: 100vh;
 }

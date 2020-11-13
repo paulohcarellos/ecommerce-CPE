@@ -35,15 +35,18 @@ function Carrinho() {
     }, []);
 
     useEffect(() => {
+        console.log(cart)
         const fetchProducts = async () => {
             cart.forEach(async item => {
                 getProduct(item.product_id)
                 .then(product => setProducts(products.concat(product)))
+                .then(() => console.log(products))
                 .catch((err) => (console.log(err)));
             })
+            console.log(products)
         }
         
-        fetchProducts();
+        fetchProducts();  
     }, [cart]);
 
     useEffect(() => {
@@ -62,6 +65,9 @@ function Carrinho() {
         const cartItem = cart.find(item => item.product_id = id);
         removeCart(cartItem);
     }
+
+    /* console.log(cart);
+    console.log(products); */
 
     return(
         <div id="paginaCarrinho">

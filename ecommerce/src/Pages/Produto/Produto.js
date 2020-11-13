@@ -61,7 +61,7 @@ function Produto() {
                         <div>
                             <h3>{product !== null && product !== undefined && product.price}</h3>
                         </div>
-                        <Button variant="outline-dark">Adicionar ao Carrinho</Button>
+                        <Button variant="outline-dark" onClick={addCartFunc}>Adicionar ao Carrinho</Button>
                 </div>   
             </div>
             <Footer />

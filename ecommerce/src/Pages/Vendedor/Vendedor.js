@@ -45,11 +45,6 @@ function Vendedor() {
         <div id="paginaVendedor">
             <Header user={user}/>
             <div id="bodyVendedor">
-                <Nav id="nav3">
-                    <Nav id="Inicio">
-                        <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
-                    </Nav>
-                </Nav>
                     <div id="linha1"/>
                         {products !== undefined && products.map( (item) => {
                                 return(
