@@ -107,3 +107,7 @@
     background-color: rgba(128, 128, 128, 0.035);
     margin-top: 10px;
 }
+
+#homeGeral{
+    height: 75vh;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import Header from '../../Components/Header'
+import Footer from '../../Components/Footer/Footer';
 import './Cadastro.css';
 
 function Cadastro() {
@@ -44,8 +45,8 @@ function Cadastro() {
     return(
         <div className="page">
             <Header />
-            <div className="geral">
-                <div className="container">
+            <div id="geralCadastro" className="mb-3 mt-3">
+                <div id="containerCadastro">
                         <h1><b>Cadastrar Usuário</b></h1>
                         <Form className="inputs">
                             <Form.Group controlId="primeiroNome">
@@ -82,9 +83,7 @@ function Cadastro() {
                         </Form>
                 </div>
             </div>
-            <div className="rodape">
-                <p>Desenvolvido por CPEJr.</p>
-            </div>
+            <Footer />
         </div>
     );
 }

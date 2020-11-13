@@ -51,13 +51,17 @@ function Produto() {
             <Header user={user}/>
             <div id="produtoPai">
                 <div id="produtoDisplay">
-                    <div id="nomeDoProduto">{product !== null && product !== undefined && product.name}</div>
+                    <div id="nomeDoProduto"> 
+                        <h1>{product !== null && product !== undefined && product.name}</h1>
+                    </div>
                     <div id="descriçaoComImagem">
                         <img id="imagemDoProduto" src={product !== null && product !== undefined && ('http://localhost:3030/product/image/' + product.image)}></img>
                         <div id="desciçaoDoProduto">{product !== null && product !== undefined && product.description}</div>
                     </div>
-                    <div>{product !== null && product !== undefined && product.price}</div>
-                    <Button variant="outline-dark" onClick={addCartFunc}>Adicionar ao Carrinho</Button>
+                        <div>
+                            <h3>{product !== null && product !== undefined && product.price}</h3>
+                        </div>
+                        <Button variant="outline-dark">Adicionar ao Carrinho</Button>
                 </div>   
             </div>
             <Footer />

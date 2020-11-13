@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useHistory } from 'react-router-dom';
 import { getUser, getCart, removeCart, getProduct } from '../../Components/tools'
 import Header from '../../Components/Header'
+import Footer from '../../Components/Footer/Footer'
 import "./Carrinho.css"
 
 function Carrinho() {
@@ -110,6 +111,7 @@ function Carrinho() {
                     </Nav>
                 </div>
             </div>
+            <Footer />
         </div>
         
     );
