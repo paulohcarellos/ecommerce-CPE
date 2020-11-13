@@ -27,6 +27,13 @@ function Venda() {
         fetchUser();
     }, [])
 
+    useEffect(() => {
+        if (user !== null) {
+            if (!user.logged)
+                history.push('login')
+        }
+    }, [user]);
+
     function selectOptions() {
         let options = []
 
