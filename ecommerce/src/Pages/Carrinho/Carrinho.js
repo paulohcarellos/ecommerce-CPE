@@ -76,6 +76,7 @@ function Carrinho() {
                 <Nav id="nav3">
                     <Nav id="Inicio">
                         <FaShoppingCart id="fotoCarrinho" className="ml-2 mr-2"/>
+                        <h1>Meu carrinho</h1>
                     </Nav>
                 </Nav>
                 <div id="linha1"/>

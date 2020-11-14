@@ -20,9 +20,9 @@ function Footer(){
           </div>
           <div id="linksDevs">
             <h3>Desenvolvedores:</h3>
-            <a href="https://www.instagram.com/helioneto29/">João Menezes</a>
-            <a href="https://www.instagram.com/paulohcarellos/">Paulo Carellas</a>
-            <a href="https://www.instagram.com/joaop.mm/">Helio Neto</a>
+            <a href="https://www.instagram.com/joaop.mm/">João Menezes</a>
+            <a href="https://www.instagram.com/paulohcarellos/">Paulo Carellos</a>
+            <a href="https://www.instagram.com/helioneto29/">Hélio Neto</a>
             <a href="https://www.instagram.com/klayor/">Kaio Amaral</a>
 
           </div>

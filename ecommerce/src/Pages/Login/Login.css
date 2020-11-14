@@ -2,16 +2,6 @@
     display: block;
     position: relative;
     min-height: 100vh;
-    background-color: white;
-}
-
-.cabecalho {
-    display: flex;
-    flex-direction: column;
-    height: 3cm;
-    width: 100%;
-    background-color: white;
-    text-align: center;
 }
 
 .geral{
@@ -19,20 +9,14 @@
     align-items: center;
     margin-top: 5%;
     justify-content: center;
-    background-color: white;
     padding-bottom: 10%;
     height: 75vh;
-}
-
-.titulo{
-    padding: 50px;
 }
 
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -47,6 +31,7 @@
     border-radius: 6px;
     padding: 30px;
     background-color: white;
+    box-shadow: 2px 2px 2px #6f6f70a6;
 }
 
 .notFound {
@@ -55,13 +40,4 @@
     text-align: center;
     font-size: 13px;
     color: red;
-}
-
-.rodape{
-    height: 10%;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background-color: #e6e6ff;
-    text-align: center;
 }
