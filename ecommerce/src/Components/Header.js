@@ -63,13 +63,12 @@ function Header(props) {
                             Categorias
                             </Dropdown.Toggle>
                             <Dropdown.Menu as={CustomMenu}>
-                                <Dropdown.Item eventKey="1">Tecnologia</Dropdown.Item>
-                                <Dropdown.Item eventKey="2">Casa e eletrodomésticos</Dropdown.Item>
-                                <Dropdown.Item eventKey="3">Esporte e Lazer</Dropdown.Item>
-                                <Dropdown.Item eventKey="4">Moda e Beleza</Dropdown.Item>
+                                <Dropdown.Item href="/home#tecnologia" eventKey="1">Tecnologia</Dropdown.Item>
+                                <Dropdown.Item href="/home#casaEletrodomestico" eventKey="2">Casa e eletrodomésticos</Dropdown.Item>
+                                <Dropdown.Item href="/home#esporteLazer" eventKey="3">Esporte e Lazer</Dropdown.Item>
+                                <Dropdown.Item href="/home#modaBeleza" eventKey="4">Moda e Beleza</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        <Link to="#ofertas" className="ml-2 mr-2">Ofertas do dia</Link>
                         <a href="/venda" className="ml-1 mr-2">Venda aqui!</a>
                     </div>
                 </Nav>

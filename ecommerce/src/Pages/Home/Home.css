@@ -55,7 +55,7 @@
 }
 
 #homeGeral{
-    height: 100vh;
+    height: 200vh;
 }
 
 #myVideo{
@@ -64,11 +64,15 @@
     height: 100%;
 }
 
+.produtos1{
+    margin-top: 10px;
+}
+
 .Carousel {
     display: flex;
     align-items: center;
     justify-content: center;
- 
+    margin-bottom: 10px;
 }
   
 .rec-carousel-item:focus {
@@ -90,8 +94,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
-    min-height: 240px;
+    height: 280px;
     width: 100%;
     min-width: 120px;
     background-color: white;
@@ -99,9 +102,4 @@
     border-radius: 10px;
     box-shadow: 2px 2px 2px #6f6f70a6;
     font-size: 0.7em;
-}
-
-.produtos1{
-    background-color: rgba(128, 128, 128, 0.035);
-    margin-top: 10px;
 }
