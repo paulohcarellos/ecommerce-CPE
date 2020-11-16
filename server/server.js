@@ -2,7 +2,6 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
-const uuid = require('uuid');
 const cors = require('cors');
 const FileStore = require('session-file-store')(session);
 const LocalStrategy = require('passport-local').Strategy;

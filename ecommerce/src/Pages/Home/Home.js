@@ -40,6 +40,8 @@ function Home() {
         { width: 1200, itemsToShow: 5, itemsToScroll: 5 }
     ];
 
+    console.log(icones)
+
     return(
         <div id="paginaHome">
             <Header user={user}/>
@@ -72,15 +74,17 @@ function Home() {
                     <div className="Carousel">
                         <Carousel breakPoints={breakPoints}>
                             {icones !== undefined && icones.map( (icone) => {
-                                return(
-                                <div id="item">
-                                    <h3>{icone.name}</h3>
-                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
-                                    <h5>{icone.description}</h5>
-                                    <h4>{'R$' + icone.price}</h4> 
-                                    <Button variant="outline-dark">Ver mais</Button>
-                                </div> 
-                                )
+                                if (icone.category === 'Tecnologia'){
+                                    return(
+                                        <div id="item">
+                                            <h3>{icone.name}</h3>
+                                            <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                            <h5>{icone.description}</h5>
+                                            <h4>{'R$' + icone.price}</h4> 
+                                            <Button variant="outline-dark">Ver mais</Button>
+                                        </div> 
+                                    )
+                                }  
                             })}
                         </Carousel>
                         
@@ -89,15 +93,17 @@ function Home() {
                     <div className="Carousel">
                         <Carousel breakPoints={breakPoints}>
                             {icones !== undefined && icones.map( (icone) => {
-                                return(
-                                <div id="item">
-                                    <h3>{icone.name}</h3>
-                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
-                                    <h5>{icone.description}</h5>
-                                    <h4>{'R$' + icone.price}</h4> 
-                                    <Button variant="outline-dark">Ver mais</Button>
-                                </div> 
-                                )
+                                if (icone.category === 'Casa e eletrodomésticos'){
+                                    return(
+                                        <div id="item">
+                                            <h3>{icone.name}</h3>
+                                            <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                            <h5>{icone.description}</h5>
+                                            <h4>{'R$' + icone.price}</h4> 
+                                            <Button variant="outline-dark">Ver mais</Button>
+                                        </div> 
+                                    )
+                                }   
                             })}
                         </Carousel>
                         
@@ -106,15 +112,17 @@ function Home() {
                     <div className="Carousel">
                         <Carousel breakPoints={breakPoints}>
                             {icones !== undefined && icones.map( (icone) => {
-                                return(
-                                <div id="item">
-                                    <h3>{icone.name}</h3>
-                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
-                                    <h5>{icone.description}</h5>
-                                    <h4>{'R$' + icone.price}</h4> 
-                                    <Button variant="outline-dark">Ver mais</Button>
-                                </div> 
-                                )
+                                if (icone.category === 'Esporte e Lazer'){
+                                    return(
+                                        <div id="item">
+                                            <h3>{icone.name}</h3>
+                                            <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                            <h5>{icone.description}</h5>
+                                            <h4>{'R$' + icone.price}</h4> 
+                                            <Button variant="outline-dark">Ver mais</Button>
+                                        </div> 
+                                    )
+                                }   
                             })}
                         </Carousel>
                         
@@ -123,15 +131,17 @@ function Home() {
                     <div className="Carousel">
                         <Carousel breakPoints={breakPoints}>
                             {icones !== undefined && icones.map( (icone) => {
-                                return(
-                                <div id="item">
-                                    <h3>{icone.name}</h3>
-                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
-                                    <h5>{icone.description}</h5>
-                                    <h4>{'R$' + icone.price}</h4> 
-                                    <Button variant="outline-dark">Ver mais</Button>
-                                </div> 
-                                )
+                                if (icone.category === 'Esporte e Beleza'){
+                                    return(
+                                        <div id="item">
+                                            <h3>{icone.name}</h3>
+                                            <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                            <h5>{icone.description}</h5>
+                                            <h4>{'R$' + icone.price}</h4> 
+                                            <Button variant="outline-dark">Ver mais</Button>
+                                        </div> 
+                                    )
+                                }  
                             })}
                         </Carousel>
                         

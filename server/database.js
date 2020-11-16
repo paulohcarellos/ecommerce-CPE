@@ -75,7 +75,7 @@ async function getProductsCat(category) {
 async function getCart(id) {
 
     return new Promise(resolve => { 
-        database.all('SELECT * FROM cart_item WHERE user_id = ?', id, (err, match) => {
+        database.all('SELECT c.id, c.product_id, p.name, c.price, c.quantity, p.image  FROM cart_item as c, products as p WHERE user_id = ? AND c.product_id = p.id', id, (err, match) => {
             
             if (err) {return console.log(err);}
             
@@ -140,13 +140,14 @@ async function addCart(body) {
             });
         });
     }
+    else {updateStock(body.product_id, body.quantity).catch(err => console.log(err));}
     
-    updateStock(body.product_id, body.quantity).catch(err => console.log(err));
     return stock;
 }
 
 async function removeCart(body) {
 
+    console.log(body);
     updateStock(body.product_id, body.quantity).catch(err => console.log(err));
 
     return new Promise(resolve => { 

@@ -35,19 +35,6 @@ function Carrinho() {
     }, []);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            cart.forEach(async item => {
-                getProduct(item.product_id)
-                .then(product => setProducts(products.concat(product)))
-                .then(() => console.log(products))
-                .catch((err) => (console.log(err)));
-            })
-        }
-        
-        fetchProducts();  
-    }, [cart]);
-
-    useEffect(() => {
         if (user !== null) {
             if (!user.logged)
                 history.push('login')
@@ -60,12 +47,11 @@ function Carrinho() {
     }
 
     const removeCartFunc = (id) => {
-        const cartItem = cart.find(item => item.product_id = id);
+        const cartItem = cart.find(item => item.id == id);
         removeCart(cartItem);
     }
 
-    /* console.log(cart);
-    console.log(products); */
+    console.log(cart);
 
     return(
         <div id="paginaCarrinho">
@@ -78,14 +64,15 @@ function Carrinho() {
                     </Nav>
                 </Nav>
                 <div id="linha1"/>
-                    {products.map((item) => { 
+                    {cart.map((item, index) => {
+                        console.log(index);
                         return(
                             <div id="componentes">
                                 <div id="atributos">
                                     <h3>{item.name}</h3>
                                     <img id="img" src={'http://localhost:3030/product/image/' + item.image}></img>
-                                    <h4>{item.price}</h4>
-                                    <h4>Quantidade em estoque {item.quantity}</h4>
+                                    <h4>R${item.price}</h4>
+                                    <h4>Estoque: {item.quantity}</h4>
                                 </div> 
                                     <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant='Success'>
                                         <Dropdown.Item href="#/action-1">1</Dropdown.Item>
