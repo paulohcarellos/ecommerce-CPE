@@ -35,7 +35,6 @@ function Carrinho() {
     }, []);
 
     useEffect(() => {
-        console.log(cart)
         const fetchProducts = async () => {
             cart.forEach(async item => {
                 getProduct(item.product_id)
@@ -43,7 +42,6 @@ function Carrinho() {
                 .then(() => console.log(products))
                 .catch((err) => (console.log(err)));
             })
-            console.log(products)
         }
         
         fetchProducts();  

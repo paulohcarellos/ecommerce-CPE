@@ -141,6 +141,7 @@ async function addCart(body) {
         });
     }
     
+    updateStock(body.product_id, body.quantity).catch(err => console.log(err));
     return stock;
 }
 

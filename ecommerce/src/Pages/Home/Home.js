@@ -27,8 +27,10 @@ function Home() {
             .catch((err) => (console.log(err)));
         }
         
-        fetchProducts();
+        fetchProducts();    
     }, []);
+
+    console.log(icones)
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },

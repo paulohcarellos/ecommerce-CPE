@@ -2,8 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
+const uuid = require('uuid');
 const cors = require('cors');
-const uuid = require('uuid/v4');
 const FileStore = require('session-file-store')(session);
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -24,10 +24,10 @@ app.use(cors({
 
 app.use(session({
     genid: () => {
-      return uuid() // use UUIDs for session IDs
+      return uuid()
     },
     store: new FileStore({logFn: () => {}}),
-    secret: 'keyboard cat',
+    secret: 'server cat',
     resave: false,
     saveUninitialized: false,
     cookie: {
