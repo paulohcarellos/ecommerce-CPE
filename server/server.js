@@ -3,12 +3,13 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const cors = require('cors');
-const uuid = require('uuid/v4');
 const FileStore = require('session-file-store')(session);
 const LocalStrategy = require('passport-local').Strategy;
 
 const db = require('./database');
 const files = require('./files');
+
+const { v4: uuid } = require('uuid');
 
 const app = express()
 const port = 3030

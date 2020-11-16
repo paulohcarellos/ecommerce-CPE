@@ -86,9 +86,7 @@ function Carrinho() {
                                 <div id="atributos">
                                     <h3>{item.name}</h3>
                                     <img id="img" src={'http://localhost:3030/product/image/' + item.image}></img>
-                                    <h5>{item.description}</h5>
                                     <h4>{item.price}</h4>
-                                    {/* <h4>Vendedor - {foto.vendedor}</h4> */}
                                     <h4>Quantidade em estoque {item.quantity}</h4>
                                 </div> 
                                     <DropdownButton id="dropdown-basic-button" title="Quantidade Itens" variant='Success'>
