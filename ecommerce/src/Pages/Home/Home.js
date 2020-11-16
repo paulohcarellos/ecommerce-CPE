@@ -3,13 +3,15 @@ import Carousel from "react-elastic-carousel";
 import Header from '../../Components/Header'
 import { getUser, getProductsAll } from '../../Components/tools'
 import Footer from '../../Components/Footer/Footer'
-import "./Home.css"
 import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import "./Home.css"
 
 function Home() {
 
     const [user, setUser] = useState(null);
     const [icones, setIcones] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -31,7 +33,9 @@ function Home() {
         fetchProducts();    
     }, []);
 
-    console.log(icones)
+    const viewItemFunc = (id) => {
+        history.push('produto/' + id)
+    }
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -62,7 +66,7 @@ function Home() {
                                     <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                     <h5>{icone.description}</h5>
                                     <h4>{'R$' + icone.price}</h4> 
-                                    <Button variant="outline-dark">Ver mais</Button>
+                                    <Button variant="outline-dark" onClick={e => viewItemFunc(icone.id)}>Ver mais</Button>
                                 </div> 
                                 )
                             })}
@@ -81,7 +85,7 @@ function Home() {
                                             <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                             <h5>{icone.description}</h5>
                                             <h4>{'R$' + icone.price}</h4> 
-                                            <Button variant="outline-dark">Ver mais</Button>
+                                            <Button variant="outline-dark" onClick={e => viewItemFunc(icone.id)}>Ver mais</Button>
                                         </div> 
                                     )
                                 }  
@@ -100,7 +104,7 @@ function Home() {
                                             <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                             <h5>{icone.description}</h5>
                                             <h4>{'R$' + icone.price}</h4> 
-                                            <Button variant="outline-dark">Ver mais</Button>
+                                            <Button variant="outline-dark" onClick={e => viewItemFunc(icone.id)}>Ver mais</Button>
                                         </div> 
                                     )
                                 }   
@@ -119,7 +123,7 @@ function Home() {
                                             <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                             <h5>{icone.description}</h5>
                                             <h4>{'R$' + icone.price}</h4> 
-                                            <Button variant="outline-dark">Ver mais</Button>
+                                            <Button variant="outline-dark" onClick={e => viewItemFunc(icone.id)}>Ver mais</Button>
                                         </div> 
                                     )
                                 }   
@@ -131,14 +135,14 @@ function Home() {
                     <div className="Carousel">
                         <Carousel breakPoints={breakPoints}>
                             {icones !== undefined && icones.map( (icone) => {
-                                if (icone.category === 'Esporte e Beleza'){
+                                if (icone.category === 'Moda e Beleza'){
                                     return(
                                         <div id="item">
                                             <h3>{icone.name}</h3>
                                             <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                             <h5>{icone.description}</h5>
                                             <h4>{'R$' + icone.price}</h4> 
-                                            <Button variant="outline-dark">Ver mais</Button>
+                                            <Button variant="outline-dark" onClick={e => viewItemFunc(icone.id)}>Ver mais</Button>
                                         </div> 
                                     )
                                 }  

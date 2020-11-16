@@ -51,8 +51,6 @@ function Carrinho() {
         removeCart(cartItem);
     }
 
-    console.log(cart);
-
     return(
         <div id="paginaCarrinho">
             <Header user={user}/>
