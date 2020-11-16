@@ -57,6 +57,7 @@
     margin-left: 10px;
     background-color: #e6e6ff;
     color: black;
+    align-items: center;
 }
 
 #Inicio{
@@ -99,9 +100,10 @@
     align-items: center;
     text-align: center;
     margin-top: 3%;
-    margin-left: 5%;
     margin-bottom: 3%;
     flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
 }
 
 #atributos{
@@ -110,23 +112,12 @@
     text-align: center;
     border: 1px solid black;
     width: 250px;
-}
-
-#item1{
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-    margin-left: 10%;
+    margin-bottom: 10px;
 }
 
 #dropdown-basic-button{
-    margin-left: 80%;
     background-color: whitesmoke;
     border: 1px solid black;
-}
-
-#Botão{
-    margin-left: 400px;
 }
 
 #entrega{
@@ -147,6 +138,6 @@
     flex-wrap: wrap;
 }
 
-#carrinhoGeral{
-    height: 75vh;
+#bodyCarrinho{
+    height: 110vh;
 }

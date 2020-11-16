@@ -10,6 +10,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const db = require('./database');
 const files = require('./files');
 
+const { v4: uuid } = require('uuid');
+
 const app = express()
 const port = 3030
 

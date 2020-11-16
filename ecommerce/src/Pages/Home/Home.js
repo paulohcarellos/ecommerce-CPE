@@ -4,6 +4,7 @@ import Header from '../../Components/Header'
 import { getUser, getProductsAll } from '../../Components/tools'
 import Footer from '../../Components/Footer/Footer'
 import "./Home.css"
+import { Button } from 'react-bootstrap';
 
 function Home() {
 
@@ -59,10 +60,81 @@ function Home() {
                                     <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
                                     <h5>{icone.description}</h5>
                                     <h4>{'R$' + icone.price}</h4> 
+                                    <Button variant="outline-dark">Ver mais</Button>
                                 </div> 
                                 )
                             })}
                         </Carousel>
+                        
+                    </div>
+                    <hr></hr>
+                    <h2 id="tecnologia" className="ml-3"><b>Tecnologia:</b></h2>
+                    <div className="Carousel">
+                        <Carousel breakPoints={breakPoints}>
+                            {icones !== undefined && icones.map( (icone) => {
+                                return(
+                                <div id="item">
+                                    <h3>{icone.name}</h3>
+                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                    <h5>{icone.description}</h5>
+                                    <h4>{'R$' + icone.price}</h4> 
+                                    <Button variant="outline-dark">Ver mais</Button>
+                                </div> 
+                                )
+                            })}
+                        </Carousel>
+                        
+                    </div>
+                    <h2 id="casaEletrodomestico" className="ml-3"><b>Casa e eletrodoméstico:</b></h2>
+                    <div className="Carousel">
+                        <Carousel breakPoints={breakPoints}>
+                            {icones !== undefined && icones.map( (icone) => {
+                                return(
+                                <div id="item">
+                                    <h3>{icone.name}</h3>
+                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                    <h5>{icone.description}</h5>
+                                    <h4>{'R$' + icone.price}</h4> 
+                                    <Button variant="outline-dark">Ver mais</Button>
+                                </div> 
+                                )
+                            })}
+                        </Carousel>
+                        
+                    </div>
+                    <h2 id="esporteLazer" className="ml-3"><b>Esporte e lazer:</b></h2>
+                    <div className="Carousel">
+                        <Carousel breakPoints={breakPoints}>
+                            {icones !== undefined && icones.map( (icone) => {
+                                return(
+                                <div id="item">
+                                    <h3>{icone.name}</h3>
+                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                    <h5>{icone.description}</h5>
+                                    <h4>{'R$' + icone.price}</h4> 
+                                    <Button variant="outline-dark">Ver mais</Button>
+                                </div> 
+                                )
+                            })}
+                        </Carousel>
+                        
+                    </div>
+                    <h2 id="modaBeleza" className="ml-3"><b>Moda e beleza:</b></h2>
+                    <div className="Carousel">
+                        <Carousel breakPoints={breakPoints}>
+                            {icones !== undefined && icones.map( (icone) => {
+                                return(
+                                <div id="item">
+                                    <h3>{icone.name}</h3>
+                                    <img id="img" src={'http://localhost:3030/product/image/' + icone.image}></img>
+                                    <h5>{icone.description}</h5>
+                                    <h4>{'R$' + icone.price}</h4> 
+                                    <Button variant="outline-dark">Ver mais</Button>
+                                </div> 
+                                )
+                            })}
+                        </Carousel>
+                        
                     </div>
                 </div>
             </div>

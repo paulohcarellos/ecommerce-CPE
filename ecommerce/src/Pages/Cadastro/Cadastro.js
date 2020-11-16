@@ -45,7 +45,7 @@ function Cadastro() {
     return(
         <div className="page">
             <Header />
-            <div id="geralCadastro" className="mb-3 mt-3">
+            <div id="geralCadastro" className="mb-4 mt-3">
                 <div id="containerCadastro">
                         <h1><b>Cadastrar Usuário</b></h1>
                         <Form className="inputs">
